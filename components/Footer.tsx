@@ -101,7 +101,7 @@ export default function Footer() {
                   {contactInfo.email}
                 </span>
               </li>
-              <li className="flex items-start gap-3 group">
+              <li className="flex items-center gap-3 group">
                 <div className="bg-teal-50 p-2 rounded-lg group-hover:bg-teal-600 transition-colors duration-300 mt-1">
                   <MapPin className="w-4 h-4 text-teal-600 group-hover:text-white" />
                 </div>
