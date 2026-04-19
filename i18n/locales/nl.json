@@ -1,0 +1,250 @@
+{
+  "links": {
+    "home": "Home",
+    "services": "Onze Diensten",
+    "projects": "Onze Projecten",
+    "about": "Over Ons"
+  },
+  "heroSection": {
+    "badge": "🏗️ Het beste voor uw comfort",
+    "title1": "Wij Bouwen",
+    "titleHighlight": "Uw Dromen",
+    "title2": "Met De Beste Materialen",
+    "description": "Wij bieden de beste soorten tegels, keramiek en moderne bouwmaterialen met hoge kwaliteit en concurrerende prijzen. Wij leveren in alle regio's van het koninkrijk.",
+    "btnQuote": "Offerte Aanvragen",
+    "btnGallery": "Productengalerij",
+    "stat1": "Gegarandeerde Kwaliteit",
+    "stat2": "Concurrerende Prijzen",
+    "stat3": "Gecertificeerd",
+    "floatingLabel": "😊Klanttevredenheid"
+  },
+  "contactForm": {
+    "badge": "📧 Neem Contact Op",
+    "title": "Stuur",
+    "titleHighlight": "een Bericht",
+    "description": "We horen graag van u. We zullen zo snel mogelijk reageren",
+
+    "formTitle": "We Wachten Op Uw Bericht",
+    "formSubtitle": "Vul het formulier in en we nemen binnen 24 uur contact met u op",
+
+    "nameLabel": "Volledige Naam",
+    "emailLabel": "E-mailadres",
+    "messageLabel": "Bericht",
+
+    "namePlaceholder": "Voer uw naam in",
+    "emailPlaceholder": "voorbeeld@email.com",
+    "messagePlaceholder": "Schrijf uw bericht hier...",
+
+    "buttonSending": "Verzenden...",
+    "buttonSend": "Bericht Versturen",
+
+    "successMessage": "Uw bericht is succesvol verzonden! We nemen binnenkort contact met u op",
+    "errorServer": "Kan geen verbinding maken met de server",
+    "errorDefault": "Er is een fout opgetreden, probeer het opnieuw"
+  },
+  "projectsSection": {
+    "title": "Onze",
+    "titleHighlight": "Meestgevraagde Projecten",
+    "description": "Een exclusieve selectie van het beste vakmanschap in bouw- en afwerkingsprojecten.",
+
+    "buttonViewAll": "Bekijk alle projecten",
+    "buttonExplore": "Ontdek meer",
+
+    "projects1": {
+      "name": "Luxueuze Vloertegels",
+      "category": "Vloerwerk"
+    },
+    "projects2": {
+      "name": "Moderne Vinylvloer Installatie",
+      "category": "Vloerwerk"
+    },
+    "projects3": {
+      "name": "Moderne Gevelbekleding",
+      "category": "Gevel"
+    },
+    "projects4": {
+      "name": "Binnen- en Buitenschilderwerk",
+      "category": "Schilderwerk"
+    },
+    "projects5": {
+      "name": "Luxueus Badkamerontwerp",
+      "category": "Badkamer"
+    },
+    "projects6": {
+      "name": "Moderne Badkamer Renovatie",
+      "category": "Badkamer"
+    }
+  },
+  "aboutSection": {
+    "badge": "✨ Over Ons",
+    "title": "Waarom ",
+    "titleHighlight": "voor ons kiezen?",
+    "subtitle": "Wij bieden u de beste bouwmaterialen met hoge kwaliteit en professionaliteit",
+
+    "whoWeAre": {
+      "title": "Wie zijn wij?",
+      "description": "Professioneel aannemersbedrijf in Nederland, gespecialiseerd in bouw-, renovatie- en onderhoudswerkzaamheden. Wij combineren moderne technieken met jarenlange ervaring voor hoogwaardige resultaten."
+    },
+
+    "ourMission": {
+      "title": "Onze Missie",
+      "description": "Projecten succesvol opleveren met maximale klanttevredenheid als hoogste prioriteit. Wij streven naar perfectie in elk detail."
+    },
+    "ourVision": {
+      "title": "Onze Visie",
+      "description": "Uitgroeien tot een toonaangevend aannemersbedrijf in Nederland, bekend om kwaliteit, transparantie en betrouwbaarheid."
+    },
+
+    "experience": {
+      "title": "Meer dan ",
+      "titleHighlight": "20 jaar ervaring",
+      "description": "Wij leveren de beste bouw- en afwerkingsmaterialen van hoge kwaliteit tegen concurrerende prijzen in heel Nederland.",
+      "features1": "Levering in alle regio's van Nederland",
+      "features2": "Gratis vrijblijvende offerte",
+      "features3": "100% Klanttevredenheid"
+    },
+    "imageAlt": "Bouwmaterialen",
+    "imageBadge": "20+ Jaar Ervaring",
+    "buttonText": "Neem nu contact met ons op"
+  },
+  "servicesHero": {
+    "badge": "Onze Diensten",
+    "titlePrefix": "Uitgebreide",
+    "titleHighlight": "Bouw",
+    "titleSuffix": "Oplossingen",
+    "description": "Wij bieden een breed scala aan bouw- en afwerkingsdiensten die zijn afgestemd op uw projectbehoeften. Van ontwerp tot uitvoering, wij leveren uitmuntendheid in elke stap.",
+    "btnQuote": "Vrijblijvende offerte",
+    "btnGallery": "Bekijk ons werk",
+    "stat1": "24/7 Ondersteuning",
+    "stat2": "Expert team",
+    "stat3": "Kwaliteit gegarandeerd",
+    "floatingLabel": "✨Snelle reactie"
+  },
+  "servicesCard": {
+    "categories": {
+      "roughConstruction": {
+        "name": "Ruwbouw & Constructie",
+        "description": "Alle bouwwerkzaamheden voor de ruwbouw van uw project.",
+        "subServices": {
+          "demolition": "Sloopwerk",
+          "preparatory": "Voorbereidende werkzaamheden",
+
+          "roughConstruction": "Ruwbouw",
+          "masonry": "Metselwerk",
+          "concrete": "Betonwerk",
+          "carpentry": "Timmerwerk"
+        }
+      },
+      "electrical": {
+        "name": "Elektra",
+        "description": "Professionele elektrische installaties en bedrading.",
+        "subServices": {
+          "electrical": "Elektra werkzaamheden"
+        }
+      },
+      "plumbing": {
+        "name": "Loodgieterswerk",
+        "description": "Waterleidingen, sanitair en verwarmingsinstallaties.",
+        "subServices": {
+          "plumbing": "Loodgieterswerk"
+        }
+      },
+      "insulation": {
+        "name": "Isolatiewerk",
+        "description": "Warmte-, geluids- en vochtisolatie voor uw woning.",
+        "subServices": {
+          "insulation": "Isolatiewerk"
+        }
+      },
+      "finishing": {
+        "name": "Afwerking & Stucwerk",
+        "description": "Stucwerk, gipswanden en schilderwerk voor een strakke afwerking.",
+        "subServices": {
+          "gypsumWalls": "Gipswanden plaatsen",
+          "falseCeilings": "Verlaagde plafonds",
+          "plastering": "Stucwerk",
+          "painting": "Schilderwerk"
+        }
+      },
+      "flooring": {
+        "name": "Tegelwerk & Vloerwerk",
+        "description": "Tegels, vloeren en parket voor een perfecte vloerafwerking.",
+        "subServices": {
+          "flooring": "Vloerwerk",
+          "tiling": "Tegelwerk"
+        }
+      },
+      "installation": {
+        "name": "Montage & Installatie",
+        "description": "Plaatsing van deuren, kozijnen, keukens en badkamers.",
+        "subServices": {
+          "doorsFrames": "Deuren en kozijnen plaatsen",
+          "kitchen": "Keuken montage",
+          "bathroom": "Badkamer installatie"
+        }
+      },
+      "delivery": {
+        "name": "Oplevering",
+        "description": "Afwerking, reiniging en oplevering van uw project.",
+        "subServices": {
+          "finishing": "Afwerking",
+          "cleaning": "Oplevering en schoonmaak"
+        }
+      }
+    }
+  },
+  "servicesSection": {
+    "badge": "🏗️ Onze Diensten",
+    "title": "Onze",
+    "titleHighlight": "Uitstekende",
+    "titleSuffix": "Diensten",
+    "description": "Wij bieden u de beste materialen voor bouw en afwerking.",
+    "showLess": "Minder",
+    "showMore": "meer",
+    "viewAll": "Bekijk alle diensten"
+  },
+  "footer": {
+    "description": "Wij leveren de beste bouwmaterialen en afwerkingen van hoge kwaliteit tegen concurrerende prijzen.",
+    "quickLinks": "Snelle Links",
+    "home": "Home",
+    "products": "Producten",
+    "features": "Kenmerken",
+    "aboutUs": "Over Ons",
+    "contactUs": "Contacteer Ons",
+    "newsletter": "Nieuwsbrief",
+    "newsletterText": "Abonneer u om de nieuwste aanbiedingen en producten te ontvangen",
+    "emailPlaceholder": "Uw e-mail",
+    "subscribe": "Abonneren",
+    "address": "Adres",
+    "allRightsReserved": "Alle rechten voorbehouden.",
+    "phone": "Telefoon",
+    "email": "E-mail"
+  },
+  "projectsHero": {
+    "badge": "Onze Projecten",
+    "titlePrefix": "Ontdek Onze",
+    "titleHighlight": "Nieuwste Projecten",
+    "titleSuffix": "",
+    "description": "Ontdek ons portfolio van succesvolle bouw- en afwerkingsprojecten. Elk project weerspiegelt onze toewijding aan kwaliteit, innovatie en klanttevredenheid.",
+    "btnQuote": "Vraag een Offerte Aan",
+    "btnGallery": "Bekijk Galerij",
+    "stat1": "100+ Projecten",
+    "stat2": "Tevreden Klanten",
+    "stat3": "Jaar Ervaring",
+    "floatingLabel": "🏗️ Meest Recente Projecten"
+  },
+
+  "aboutHero": {
+    "badge": "Over Ons",
+    "titlePrefix": "Uw Betrouwbare",
+    "titleHighlight": "Bouwpartner",
+    "titleSuffix": "",
+    "description": "Met jarenlange ervaring en een passie voor uitmuntendheid leveren wij kwalitatieve bouw- en afwerkingsoplossingen die uw visie tot leven brengen.",
+    "btnQuote": "Neem Contact Op",
+    "btnGallery": "Ons Team",
+    "stat1": "5+ Jaar",
+    "stat2": "100+ Projecten",
+    "stat3": "50+ Experts",
+    "floatingLabel": "💎 Quality & Comfort"
+  }
+}

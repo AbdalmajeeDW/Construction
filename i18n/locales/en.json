@@ -1,0 +1,245 @@
+{
+  "links": {
+    "home": "Home",
+    "services": "Our Services",
+    "projects": "Our Projects",
+    "about": "About Us"
+  },
+  "heroSection": {
+    "badge": "🏗️ The best for your comfort",
+    "title1": "We Build",
+    "titleHighlight": "Your Dreams",
+    "title2": "With The Best Materials",
+    "description": "We provide the best types of tiles, ceramics, and modern building materials with high quality and competitive prices. We deliver to all regions of the Kingdom.",
+    "btnQuote": "Get a Quote",
+    "btnGallery": "Products Gallery",
+    "stat1": "Quality Guaranteed",
+    "stat2": "Competitive Prices",
+    "stat3": "Certified",
+    "floatingLabel": "😊Customer Satisfaction"
+  },
+  "contactForm": {
+    "badge": "📧 Contact Us",
+    "title": "Send",
+    "titleHighlight": "a Message",
+    "description": "We look forward to hearing from you. We will reply as soon as possible",
+
+    "formTitle": "We're Waiting for Your Message",
+    "formSubtitle": "Fill out the form and we will get back to you within 24 hours",
+
+    "nameLabel": "Full Name",
+    "emailLabel": "Email Address",
+    "messageLabel": "Message",
+
+    "namePlaceholder": "Enter your name",
+    "emailPlaceholder": "example@email.com",
+    "messagePlaceholder": "Write your message here...",
+
+    "buttonSending": "Sending...",
+    "buttonSend": "Send Message",
+
+    "successMessage": "Your message has been sent successfully! We will contact you soon",
+    "errorServer": "Failed to connect to server",
+    "errorDefault": "An error occurred, please try again"
+  },
+  "projectsSection": {
+    "title": "Our",
+    "titleHighlight": "Most Requested Projects",
+    "description": "An exclusive selection of the best craftsmanship in construction and finishing projects",
+
+    "buttonViewAll": "View all projects",
+    "buttonExplore": "Discover more",
+
+    "projects1": {
+      "name": "Luxury Floor Tiling",
+      "category": "Flooring"
+    },
+    "projects2": {
+      "name": "Modern Vinyl Flooring Installation",
+      "category": "Flooring"
+    },
+    "projects3": {
+      "name": "Modern House Facade Cladding",
+      "category": "Facade"
+    },
+    "projects4": {
+      "name": "Interior & Exterior Painting",
+      "category": "Painting"
+    },
+    "projects5": {
+      "name": "Luxury Bathroom Design",
+      "category": "Bathroom"
+    },
+    "projects6": {
+      "name": "Modern Bathroom Renovation",
+      "category": "Bathroom"
+    }
+  },
+  "aboutSection": {
+    "badge": "✨ About Us",
+    "title": "Why ",
+    "titleHighlight": "choose us?",
+    "subtitle": "We offer you the best building materials with high quality and professionalism",
+    "whoWeAre": {
+      "title": "Who are we?",
+      "description": "Professional contracting company in the Netherlands, specialized in construction, renovation and maintenance work. We combine modern techniques with years of experience for high-quality results."
+    },
+    "ourMission": {
+      "title": "Our Mission",
+      "description": "Successfully delivering projects with maximum customer satisfaction as the highest priority. We strive for perfection in every detail."
+    },
+    "ourVision": {
+      "title": "Our Vision",
+      "description": "Growing into a leading contracting company in the Netherlands, known for quality, transparency and reliability."
+    },
+    "experience": {
+      "title": "More than ",
+      "titleHighlight": "20 years of experience",
+      "description": "We deliver the best high-quality construction and finishing materials at competitive prices throughout the Netherlands.",
+      "features1": "Delivery in all regions of the Netherlands",
+      "features2": "Free no-obligation quote",
+      "features3": "100% Customer satisfaction"
+    },
+    "imageAlt": "Building materials",
+    "imageBadge": "20+ Years Experience",
+    "buttonText": "Contact us now"
+  },
+  "servicesHero": {
+    "badge": "Our Services",
+    "titlePrefix": "Comprehensive",
+    "titleHighlight": "Construction",
+    "titleSuffix": "Solutions",
+    "description": "We offer a wide range of construction and finishing services tailored to meet your project needs. From design to execution, we deliver excellence at every step.",
+    "btnQuote": "Get a Free Quote",
+    "btnGallery": "View Our Work",
+    "stat1": "24/7 Support",
+    "stat2": "Expert Team",
+    "stat3": "Quality Guaranteed",
+    "floatingLabel": "✨Fast Response"
+  },
+  "servicesCard": {
+    "categories": {
+      "roughConstruction": {
+        "name": "Rough Construction & Structure",
+        "description": "All structural works for the rough construction of your project.",
+        "subServices": {
+          "demolition": "Demolition Works",
+          "preparatory": "Preparatory Works",
+          "roughConstruction": "Rough Construction",
+          "masonry": "Masonry Work",
+          "concrete": "Concrete Work",
+          "carpentry": "Carpentry Work"
+        }
+      },
+      "electrical": {
+        "name": "Electrical Works",
+        "description": "Professional electrical installations and wiring.",
+        "subServices": {
+          "electrical": "Electrical Works"
+        }
+      },
+      "plumbing": {
+        "name": "Plumbing",
+        "description": "Water pipes, sanitary ware and heating installations.",
+        "subServices": {
+          "plumbing": "Plumbing Works"
+        }
+      },
+      "insulation": {
+        "name": "Insulation Works",
+        "description": "Heat, sound and moisture insulation for your home.",
+        "subServices": {
+          "insulation": "Insulation Works"
+        }
+      },
+      "finishing": {
+        "name": "Finishing & Plastering",
+        "description": "Plastering, gypsum walls and painting for a smooth finish.",
+        "subServices": {
+          "gypsumWalls": "Gypsum Walls Installation",
+          "falseCeilings": "False Ceilings",
+          "plastering": "Plastering Works",
+          "painting": "Painting Works"
+        }
+      },
+      "flooring": {
+        "name": "Tiling & Flooring",
+        "description": "Tiles, floors and parquet for perfect floor finishing.",
+        "subServices": {
+          "flooring": "Flooring Works",
+          "tiling": "Tiling Works"
+        }
+      },
+      "installation": {
+        "name": "Assembly & Installation",
+        "description": "Installation of doors, frames, kitchens and bathrooms.",
+        "subServices": {
+          "doorsFrames": "Doors and Frames Installation",
+          "kitchen": "Kitchen Assembly",
+          "bathroom": "Bathroom Installation"
+        }
+      },
+      "delivery": {
+        "name": "Project Delivery",
+        "description": "Finishing, cleaning and delivery of your project.",
+        "subServices": {
+          "finishing": "Finishing Works",
+          "cleaning": "Delivery & Cleaning"
+        }
+      }
+    }
+  },
+  "servicesSection": {
+    "badge": "🏗️ Our Services",
+    "title": "Our",
+    "titleHighlight": "Excellent",
+    "titleSuffix": "Services",
+    "description": "We offer you the best materials for construction and finishing.",
+    "showLess": "Show less",
+    "showMore": "more",
+    "viewAll": "View all services"
+  },
+  "footer": {
+    "description": "We provide the best building materials and finishes with high quality and competitive prices.",
+    "quickLinks": "Quick Links",
+    "home": "Home",
+    "products": "Products",
+    "features": "Features",
+    "aboutUs": "About Us",
+    "contactUs": "Contact Us",
+    "newsletter": "Newsletter",
+    "newsletterText": "Subscribe to receive latest offers and products",
+    "emailPlaceholder": "Your email",
+    "subscribe": "Subscribe",
+    "address": "Address",
+    "allRightsReserved": "All rights reserved.",
+    "phone": "Phone",
+    "email": "Email"
+  },
+  "projectsHero": {
+    "badge": "Our Projects",
+    "titlePrefix": "Explore Our",
+    "titleHighlight": "Latest Projects",
+    "titleSuffix": "",
+    "description": "Discover our portfolio of successful construction and finishing projects. Each project reflects our commitment to quality, innovation, and client satisfaction.",
+    "btnQuote": "Request a Quote",
+    "btnGallery": "Browse Gallery",
+    "stat1": "100+ Projects",
+    "stat2": "Happy Clients",
+    "stat3": "Years Experience",
+    "floatingLabel": "🏗️ Latest Projects"
+  },
+  "aboutHero": {
+    "badge": "About Us",
+    "titlePrefix": "Your Trusted",
+    "titleHighlight": "Construction Partner",
+    "titleSuffix": "",
+    "description": "With years of experience and a passion for excellence, we deliver quality construction and finishing solutions that bring your vision to life.",
+    "btnQuote": "Contact Us",
+    "btnGallery": "Our Team",
+    "stat1": "5+ Years",
+    "stat2": "100+ Projects",
+    "stat3": "50+ Experts",
+    "floatingLabel": "💎 Quality & Comfort"
+  }
+}
