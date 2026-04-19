@@ -24,7 +24,7 @@ export default function Home() {
       <section id="about">
         <About />
       </section>
-      <ContactForm />
+      {/* <ContactForm /> */}
       {/* <Footer /> */}
     </main>
   );
