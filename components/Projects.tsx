@@ -8,7 +8,7 @@ import Image, { StaticImageData } from "next/image";
 import { projects } from "@/data/projects";
 import { useRouter, usePathname } from "next/navigation";
 interface card {
-  onView: (id: number) => void;
+  onView?: (id: number) => void;
 }
 export default function Projects({ onView }: card) {
   const path = usePathname();
@@ -24,7 +24,7 @@ export default function Projects({ onView }: card) {
     : projectsdata;
   const handleView = async (id: number) => {
     if (flagLink) {
-      onView(id);
+      onView!(id);
     } else router.push(`/project/${id}`);
   };
   return (
