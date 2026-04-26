@@ -71,14 +71,14 @@ export default function Hero({
                 font-bold text-gray-800 mb-4 sm:mb-6 leading-tight
               "
             >
-              <span className="block sm:inline">{t(titlePrefixKey)}</span>
+              <span className=" sm:inline">{t(titlePrefixKey)}</span>
               <span className="
-                text-transparent bg-clip-text bg-teal-600
-                block sm:inline-block
+                text-transparent bg-clip-text px-1 bg-teal-600
+                 sm:inline-block
               ">
                 {t(titleHighlightKey)}
               </span>
-              <span className="block sm:inline">{t(titleSuffixKey)}</span>
+              <span className=" sm:inline">{t(titleSuffixKey)}</span>
             </motion.h1>
 
             <motion.p
@@ -98,7 +98,7 @@ export default function Hero({
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.4 }}
               className="
-                grid grid-cols-1  sm:grid-cols-3 gap-3 sm:gap-10 
+                grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-10 
                 mt-8 sm:mt-10 md:mt-12 
                 pt-6 sm:pt-8 border-t border-gray-300
               "
@@ -130,11 +130,7 @@ export default function Hero({
               {
                 heroImage
               }
-              {/* <img
-                src={heroImage}
-                alt="Hero visual"
-                className="w-full h-auto rounded-2xl"
-              /> */}
+        
               <div className="absolute inset-0 bg-linear-to-t from-gray-100/50 to-transparent" />
             </div>
 
