@@ -11,8 +11,7 @@ export default function page() {
         titleHighlightKey="contactHero.titleHighlight"
         titleSuffixKey="contactHero.titleSuffix"
         descriptionKey="contactHero.description"
-        btnQuoteKey="contactHero.btnQuote"
-        btnGalleryKey="contactHero.btnGallery"
+        
         statsKeys={[
           "contactHero.stat1",
           "contactHero.stat2",

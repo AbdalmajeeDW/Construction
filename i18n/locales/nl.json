@@ -17,7 +17,9 @@
     "stat1": "Gegarandeerde Kwaliteit",
     "stat2": "Concurrerende Prijzen",
     "stat3": "Gecertificeerd",
-    "floatingLabel": "😊Klanttevredenheid"
+    "floatingLabel": "😊Klanttevredenheid",
+        "cta": "Diensten bekijken",
+    "secondary": "Projecten bekijken"
   },
   "contactForm": {
     "title": "Contacteer",

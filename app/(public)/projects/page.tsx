@@ -21,8 +21,7 @@ export default function ProjectsPage() {
         titleHighlightKey="projectsHero.titleHighlight"
         titleSuffixKey="projectsHero.titleSuffix"
         descriptionKey="projectsHero.description"
-        btnQuoteKey="projectsHero.btnQuote"
-        btnGalleryKey="projectsHero.btnGallery"
+    
         statsKeys={[
           "projectsHero.stat1",
           "projectsHero.stat2",

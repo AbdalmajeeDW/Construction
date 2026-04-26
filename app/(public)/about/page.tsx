@@ -11,8 +11,6 @@ export default function AboutPage() {
         titleHighlightKey="aboutHero.titleHighlight"
         titleSuffixKey="aboutHero.titleSuffix"
         descriptionKey="aboutHero.description"
-        btnQuoteKey="aboutHero.btnQuote"
-        btnGalleryKey="aboutHero.btnGallery"
         statsKeys={["aboutHero.stat1", "aboutHero.stat2", "aboutHero.stat3"]}
         floatingLabelKey="aboutHero.floatingLabel"
         heroImage={<Image src={about} alt="Contact Us" className="w-full h-auto rounded-2xl" />}
