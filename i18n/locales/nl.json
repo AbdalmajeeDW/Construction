@@ -392,5 +392,22 @@
     "message": "Weet je zeker dat je dit bericht wilt verwijderen? Deze actie kan niet ongedaan worden gemaakt.",
     "confirmText": "Verwijderen",
     "cancelText": "Annuleren"
+  },
+     "project": {
+    "notFound": "Project niet gevonden",
+    "goBack": "Ga Terug",
+    "backToProjects": "Terug naar Projecten",
+    "projectOverview": "Projectoverzicht",
+    "projectDetails": "Projectdetails",
+    "completed": "Voltooid",
+    "category": "Categorie",
+    "totalImages": "Totaal Afbeeldingen",
+    "projectId": "Project ID",
+    "clickFullscreen": "Klik om volledig scherm te bekijken",
+    "year": "2024",
+        "textB":"Dit verbluffend",
+        "textA":"  Dit project toont onze expertise in het creëren van mooie en functionele ruimtes. We zijn er trots op hoogwaardige resultaten te leveren die de verwachtingen van onze klanten overtreffen."
+
+
   }
 }

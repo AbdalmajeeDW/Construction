@@ -31,7 +31,7 @@ export default function ProjectPage() {
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
           <h2 className="text-2xl font-bold text-slate-800">
-            Project not found
+            {t('project.notFound')}
           </h2>
           <button
             onClick={() => router.back()}
@@ -76,7 +76,7 @@ export default function ProjectPage() {
             className="mb-8 inline-flex items-center gap-2 text-slate-600 hover:text-teal-600 transition-colors group"
           >
             <ArrowLeft className="w-5 h-5 group-hover:-translate-x-1 transition-transform" />
-            <span>Back to Projects</span>
+            <span>{t('project.backToProjects')}</span>
           </motion.button>
 
           <motion.div
@@ -113,7 +113,7 @@ export default function ProjectPage() {
               />
               <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300 flex items-center justify-center">
                 <span className="opacity-0 group-hover:opacity-100 bg-black/50 text-white px-4 py-2 rounded-full text-sm transition-all duration-300">
-                  Click to view fullscreen
+                  {t('project.clickFullscreen')}
                 </span>
               </div>
             </div>
@@ -142,7 +142,6 @@ export default function ProjectPage() {
             )}
           </motion.div>
 
-          {/* معلومات إضافية */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -151,35 +150,39 @@ export default function ProjectPage() {
           >
             <div className="md:col-span-2 bg-white rounded-2xl p-8 shadow-lg">
               <h3 className="text-2xl font-bold text-slate-800 mb-4">
-                Project Overview
+               {t('project.projectOverview')}
               </h3>
               <p className="text-slate-600 leading-relaxed mb-6">
-                This stunning {project.category.toLowerCase()} project showcases
-                our expertise in creating beautiful and functional spaces. We
-                take pride in delivering high-quality results that exceed our
-                clients' expectations.
+                {t('project.textB')} <span className="px-1">
+                {project.category.toLowerCase()}
+                </span>{t('project.textA')}
               </p>
               <div className="flex flex-wrap gap-4">
                 <div className="flex items-center gap-2 text-slate-600">
                   <Calendar className="w-5 h-5 text-teal-600" />
-                  <span>Completed: 2024</span>
+                  <span>{t('project.completed')}: 2024</span>
                 </div>
               </div>
             </div>
 
             <div className="bg-linear-to-br from-teal-600 to-teal-700 rounded-2xl p-8 shadow-lg text-white">
-              <h3 className="text-2xl font-bold mb-4">Project Details</h3>
+              <h3 className="text-2xl font-bold mb-4">{t('project.projectDetails')}</h3>
               <ul className="space-y-3">
                 <li className="flex justify-between">
-                  <span className="opacity-90">Category:</span>
+                  <span className="opacity-90">{t('project.category')}:</span>
                   <span className="font-semibold">{project.category}</span>
                 </li>
                 <li className="flex justify-between">
-                  <span className="opacity-90">Total Images:</span>
+                  <span className="opacity-90">
+{t('project.totalImages')}:
+
+
+                  </span>
                   <span className="font-semibold">{images.length}</span>
                 </li>
                 <li className="flex justify-between">
-                  <span className="opacity-90">Project ID:</span>
+                  <span className="opacity-90">            {t('project.projectId')}
+:</span>
                   <span className="font-semibold">#{project.id}</span>
                 </li>
               </ul>
@@ -188,7 +191,6 @@ export default function ProjectPage() {
         </div>
       </section>
 
-      {/* Lightbox - عرض الصور بحجم كامل */}
       {selectedImage !== null && (
         <motion.div
           initial={{ opacity: 0 }}
