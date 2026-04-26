@@ -1,14 +1,12 @@
 "use client";
 
 import Hero from "@/components/Hero";
-import Navbar from "@/components/Navbar";
 import Categories from "@/components/Services";
 import Image from "next/image";
 import services from '../../../public/services.jpg'
 export default function page() {
   return (
     <section id="categories">
-      {/* <Navbar /> */}
       <Hero
         badgeKey="servicesHero.badge"
         titlePrefixKey="servicesHero.titlePrefix"

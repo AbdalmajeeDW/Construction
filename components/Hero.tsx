@@ -13,6 +13,7 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import { useTranslation } from "react-i18next";
+import { usePathname, useRouter } from "next/navigation";
 
 interface HeroProps {
   badgeKey?: string;
@@ -45,7 +46,8 @@ export default function Hero({
   statsIcons = [CheckCircle, TrendingUp, Award],
 }: HeroProps) {
   const { t } = useTranslation();
-
+ const router = useRouter();
+  const pathname = usePathname();
   return (
     <section className="relative overflow-hidden min-h-[calc(100vh-80px)] flex items-center bg-linear-to-br from-gray-100 via-gray-400 to-gray-100">
       <div className="absolute inset-0 opacity-25">
@@ -98,18 +100,25 @@ export default function Hero({
               className="mt-6 sm:mt-8 flex flex-col sm:flex-row gap-3"
             >
               <Link
-                href="/services"
+                href={pathname==="/services" ?'/contact':'/services'}
                 className="bg-teal-600 text-white px-6 py-3 rounded-xl flex items-center justify-center gap-2 shadow-lg hover:scale-105 transition"
               >
-                {t("heroSection.cta")}
+                {
+                  pathname==="/services" ?t("links.contact"):t("heroSection.cta")
+
+                }
                 <ArrowRight className="w-4 h-4" />
               </Link>
 
               <Link
-                href="/projects"
+                href={pathname==="/projects" ?'/about':'/projects'}
                 className="border border-gray-400 text-gray-700 px-6 py-3 rounded-xl hover:bg-gray-200 transition flex items-center justify-center gap-2"
               >
-                {t("heroSection.secondary")}
+              
+                {
+                  pathname==="/projects" ?t("links.about"):t("heroSection.secondary")
+
+                }
                 <ArrowRight className="w-4 h-4" />
               </Link>
             </motion.div>
@@ -159,12 +168,7 @@ export default function Hero({
         </div>
       </div>
 
-      {/* <div className="absolute bottom-5  left-1/2 -translate-x-1/2 flex flex-col items-center">
-        <span className="text-xs text-gray-500 mb-1">Scroll</span>
-        <div className="w-5 h-9 border-2 border-gray-400 rounded-full flex justify-center">
-          <div className="w-1 h-2 bg-gray-500 rounded-full mt-1 animate-bounce"></div>
-        </div>
-      </div> */}
+     
     </section>
   );
 }
