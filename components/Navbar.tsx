@@ -7,11 +7,15 @@ import Image from "next/image";
 import Logo from "../public/1.png";
 import LanguageSwitcher from "./LanguageSwitcher";
 import { useTranslation } from "react-i18next";
+import { usePathname } from "next/navigation";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const { t } = useTranslation();
+  const pathname = usePathname();
+  
+  const isHome = pathname === "/";
 
   useEffect(() => {
     const handleScroll = () => {
@@ -29,38 +33,67 @@ export default function Navbar() {
     { name: t("links.contact"), href: "/contact" },
   ];
 
+  const getNavbarStyle = () => {
+    if (isScrolled) {
+      return "bg-gray-400 backdrop-blur-md shadow-sm";
+    }
+    
+    if (isHome) {
+      return "bg-transparent";
+    }
+    
+    return "bg-gray-400 backdrop-blur-sm";
+  };
+
+  const getLinkColor = () => {
+    if (isScrolled) {
+      return "text-white hover:text-teal-600";
+    }
+    if (isHome) {
+      return "text-white hover:text-teal-600";
+    }
+    return "text-white hover:text-teal-600";
+  };
+
+  const getActiveLinkColor = () => {
+    if (isScrolled) {
+      return "text-teal-600 font-semibold";
+    }
+    return "text-teal-600 font-semibold";
+  };
+
   return (
     <>
-    <div className="h-20 bg-gray-400 backdrop-blur-md"></div>
+      <div className="h-20 bg-gray-400"></div>
       
-<motion.nav
-  initial={{ y: -100 }}
-  animate={{ y: 0 }}
-  transition={{ duration: 0.5 }}
-  className={`fixed top-0 left-0 right-0 h-20 z-50 transition-all duration-500 ${
-    isScrolled 
-      ? "bg-black/70 backdrop-blur-md" 
-      : "bg-transparent"
-  }`}
->
+      <motion.nav
+        initial={{ y: -100 }}
+        animate={{ y: 0 }}
+        transition={{ duration: 0.5 }}
+        className={`fixed top-0 left-0 right-0 h-20  z-50 transition-all duration-500 ${getNavbarStyle()}`}
+      >
         <div className="px-4 sm:px-6 lg:px-8 mx-auto h-full">
           <div className="flex justify-between items-center h-full">
             <motion.a
-              href="#"
+              href="/"
               className="text-3xl md:text-4xl font-bold"
               whileHover={{ scale: 1.05 }}
             >
-              <span className="bg-teal-600">
+              <span className="inline-block">
                 <Image src={Logo} width={75} height={75} alt="Logo" />
               </span>
             </motion.a>
             
-            <div className="hidden lg:flex items-center gap-10">
+            <div className="hidden lg:flex items-center gap-8">
               {navLinks.map((link) => (
                 <motion.a
                   key={link.name}
                   href={link.href}
-                  className="text-white text-xl hover:text-teal-600 transition-all duration-300"
+                  className={`transition-all duration-300 text-base font-medium ${
+                    pathname === link.href
+                      ? getActiveLinkColor()
+                      : getLinkColor()
+                  }`}
                   whileHover={{ y: -2 }}
                 >
                   {link.name}
@@ -74,7 +107,9 @@ export default function Navbar() {
 
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="lg:hidden p-2 rounded-lg text-white"
+              className={`lg:hidden p-2 rounded-lg transition-colors ${
+                isScrolled || !isHome ? "text-gray-700" : "text-white"
+              }`}
             >
               {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </button>
@@ -85,13 +120,17 @@ export default function Navbar() {
               initial={{ opacity: 0, y: -20 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -20 }}
-              className="lg:hidden mt-4 py-4 bg-white/95 backdrop-blur-md rounded-xl shadow-xl"
+              className="lg:hidden mt-4 py-3 bg-white/95 backdrop-blur-md rounded-2xl shadow-lg border border-gray-100"
             >
               {navLinks.map((link) => (
                 <a
                   key={link.name}
                   href={link.href}
-                  className="block px-4 py-3 text-gray-800 hover:bg-teal-50 hover:text-teal-600 transition-colors"
+                  className={`block px-5 py-3 transition-colors mx-2 rounded-xl ${
+                    pathname === link.href
+                      ? "bg-teal-50 text-teal-600 font-semibold"
+                      : "text-gray-700 hover:bg-gray-50 hover:text-teal-600"
+                  }`}
                   onClick={() => setIsOpen(false)}
                 >
                   {link.name}

@@ -1,10 +1,6 @@
 "use client";
 
 import heroHome from "../public/heroHome.jpg";
-import heroServices from "../public/services.jpg";
-import heroProjects from "../public/project.jpg";
-import heroAbout from "../public/about.jpg";
-import heroContact from "../public/contact.jpg";
 import { motion } from "framer-motion";
 import {
   ArrowRight,
@@ -49,204 +45,199 @@ export default function Hero({
 }: HeroProps) {
   const { t } = useTranslation();
   const pathname = usePathname();
+  const isHome = pathname === "/";
 
-  const getDefaultImage = () => {
+  const getPageTitle = () => {
     switch (pathname) {
       case "/services":
-        return heroServices;
+        return t("links.services");
       case "/projects":
-        return heroProjects;
+        return t("links.projects");
       case "/about":
-        return heroAbout;
+        return t("links.about");
       case "/contact":
-        return heroContact;
+        return t("links.contact");
       default:
-        return heroHome;
+        return "";
     }
   };
 
   const getPageIcon = () => {
     switch (pathname) {
       case "/services":
-        return <Settings className="w-4 h-4" />;
+        return <Settings className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24" />;
       case "/projects":
-        return <Folder className="w-4 h-4" />;
+        return <Folder className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24" />;
       case "/about":
-        return <Users className="w-4 h-4" />;
+        return <Users className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24" />;
       case "/contact":
-        return <Mail className="w-4 h-4" />;
+        return <Mail className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24" />;
       default:
-        return <Home className="w-4 h-4" />;
+        return <Home className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24" />;
     }
   };
 
-  const getBadgeText = () => {
-    switch (pathname) {
-      case "/services":
-        return "Services";
-      case "/projects":
-        return "Projects";
-      case "/about":
-        return "About Us";
-      case "/contact":
-        return "Contact";
-      default:
-        return "Home";
-    }
-  };
+  if (isHome) {
+    const finalHeroImage = heroImage || (
+      <Image
+        src={heroHome}
+        alt="hero"
+        className="w-full h-full object-cover hidden lg:block rounded-2xl shadow-xl"
+        priority
+      />
+    );
 
-  const finalHeroImage = heroImage || (
-    <Image
-      src={getDefaultImage()}
-      alt="hero"
-      className="w-full h-full object-cover"
-      priority
-    />
-  );
+    return (
+      <section className="relative overflow-hidden min-h-[calc(100vh-80px)] flex items-center bg-linear-to-br from-gray-100 via-teal-100 to-gray-100">
+        <div className="absolute inset-0 opacity-20 pointer-events-none">
+          <div className="absolute top-20 left-10 w-72 h-72 bg-teal-300 rounded-full mix-blend-multiply filter blur-xl animate-pulse" />
+          <div className="absolute bottom-20 right-10 w-96 h-96 bg-teal-300 rounded-full mix-blend-multiply filter blur-xl animate-pulse delay-1000" />
+          <div className="absolute top-1/2 left-1/2 w-80 h-80 bg-teal-300 rounded-full mix-blend-multiply filter blur-xl animate-pulse delay-2000 -translate-x-1/2 -translate-y-1/2" />
+        </div>
 
-  return (
-    <section className="relative overflow-hidden min-h-[calc(100vh-80px)] flex items-center bg-linear-to-br from-gray-100 via-gray-200 to-gray-100">
-      {/* Background blobs */}
-      <div className="absolute inset-0 opacity-20 pointer-events-none">
-        <div className="absolute top-20 left-10 w-72 h-72 bg-blue-300 rounded-full mix-blend-multiply filter blur-xl animate-pulse" />
-        <div className="absolute bottom-20 right-10 w-96 h-96 bg-indigo-300 rounded-full mix-blend-multiply filter blur-xl animate-pulse delay-1000" />
-        <div className="absolute top-1/2 left-1/2 w-80 h-80 bg-blue-300 rounded-full mix-blend-multiply filter blur-xl animate-pulse delay-2000 -translate-x-1/2 -translate-y-1/2" />
-      </div>
-
-      <div className="relative mx-auto w-full px-4 sm:px-6 lg:px-8 py-6 sm:py-10 md:py-10 z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-10 items-center">
-          <div className="text-left">
-            
-            {/* Mobile Badge with Animated Icon */}
-            <motion.div
-              initial={{ opacity: 0, y: -20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              className="lg:hidden mb-5"
-            >
-              <div className="inline-flex items-center gap-2 px-4 py-2 bg-teal-600 rounded-full shadow-md">
-                <motion.span
-                  animate={{ 
-                    rotate: [0, -10, 10, -5, 5, 0],
-                    scale: [1, 1.1, 1]
-                  }}
-                  transition={{ 
-                    duration: 2,
-                    repeat: Infinity,
-                    ease: "easeInOut"
-                  }}
-                  className="text-white flex items-center"
-                >
-                  {getPageIcon()}
-                </motion.span>
-                <span className="text-white font-medium text-sm tracking-wide">
-                  {getBadgeText()}
+        <div className="relative mx-auto w-full px-4 sm:px-6 lg:px-8 py-6 sm:py-10 md:py-10 z-10">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-10 items-center">
+            <div className="text-left">
+              <motion.div
+                initial={{ opacity: 0, x: 40 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.6 }}
+              >
+                <span className="inline-block px-4 py-2 bg-gray-800/10 backdrop-blur-sm rounded-full text-gray-700 text-xs sm:text-sm mb-4">
+                  {t(badgeKey)}
                 </span>
-              </div>
-            </motion.div>
+              </motion.div>
 
-            {/* Desktop Badge - Original Style */}
-            <motion.div
-              initial={{ opacity: 0, x: 40 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6 }}
-              className="hidden lg:block"
-            >
-              <span className="inline-block px-4 py-2 bg-gray-800/10 backdrop-blur-sm rounded-full text-gray-700 text-xs sm:text-sm mb-4">
-                {t(badgeKey)}
-              </span>
-            </motion.div>
-
-            <motion.h1
-              initial={{ opacity: 0, x: 40 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6, delay: 0.1 }}
-              className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl 2xl:text-7xl font-bold text-gray-800 mb-4 leading-tight"
-            >
-              <span>{t(titlePrefixKey)} </span>
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-500 to-teal-700 px-1">
-                {t(titleHighlightKey)}
-              </span>
-              <span> {t(titleSuffixKey)}</span>
-            </motion.h1>
-
-            <motion.p
-              initial={{ opacity: 0, x: 40 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="text-sm sm:text-base md:text-lg lg:text-xl text-gray-600 leading-relaxed"
-            >
-              {t(descriptionKey)}
-            </motion.p>
-
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.4 }}
-              className="mt-6 sm:mt-8 flex flex-col sm:flex-row gap-3"
-            >
-              <Link
-                href={pathname === "/services" ? "/contact" : "/services"}
-                className="bg-teal-600 text-white px-6 py-3 rounded-xl flex items-center justify-center gap-2 shadow-lg hover:scale-105 transition"
+              <motion.h1
+                initial={{ opacity: 0, x: 40 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.6, delay: 0.1 }}
+                className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl 2xl:text-7xl font-bold text-gray-800 mb-4 leading-tight"
               >
-                {pathname === "/services" ? t("links.contact") : t("heroSection.cta")}
-                <ArrowRight className="w-4 h-4" />
-              </Link>
+                <span>{t(titlePrefixKey)} </span>
+                <span className="text-transparent bg-clip-text bg-linear-to-r from-teal-500 to-teal-700 px-1">
+                  {t(titleHighlightKey)}
+                </span>
+                <span> {t(titleSuffixKey)}</span>
+              </motion.h1>
 
-              <Link
-                href={pathname === "/projects" ? "/about" : "/projects"}
-                className="border border-gray-300 text-gray-700 px-6 py-3 rounded-xl hover:bg-gray-100 transition flex items-center justify-center gap-2"
+              <motion.p
+                initial={{ opacity: 0, x: 40 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+                className="text-sm sm:text-base md:text-lg lg:text-xl text-gray-600 leading-relaxed"
               >
-                {pathname === "/projects" ? t("links.about") : t("heroSection.secondary")}
-                <ArrowRight className="w-4 h-4" />
-              </Link>
-            </motion.div>
+                {t(descriptionKey)}
+              </motion.p>
 
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.5 }}
-              className="grid grid-cols-3 gap-4 mt-8 pt-6 border-t border-gray-200"
-            >
-              {statsKeys.map((statKey, idx) => {
-                const Icon = statsIcons[idx % statsIcons.length];
-                return (
-                  <div key={idx} className="flex flex-col items-center gap-1">
-                    <Icon className="w-5 h-5 text-teal-600" />
-                    <span className="text-gray-600 text-xs sm:text-sm text-center">
-                      {t(statKey)}
-                    </span>
-                  </div>
-                );
-              })}
-            </motion.div>
-          </div>
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.4 }}
+                className="mt-6 sm:mt-8 flex flex-col sm:flex-row gap-3"
+              >
+                <Link
+                  href="/services"
+                  className="bg-teal-600 text-white px-6 py-3 rounded-xl flex items-center justify-center gap-2 shadow-lg hover:scale-105 transition"
+                >
+                  {t("heroSection.cta")}
+                  <ArrowRight className="w-4 h-4" />
+                </Link>
 
-          {/* Image Section - Desktop only */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.85 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8 }}
-            className="relative mt-6 hidden lg:block lg:mt-0"
-          >
-            <div className="relative rounded-2xl overflow-hidden shadow-xl max-w-md mx-auto lg:max-w-none">
-              {finalHeroImage}
-              <div className="absolute inset-0 bg-gradient-to-t from-gray-100/30 to-transparent" />
+                <Link
+                  href="/projects"
+                  className="border border-gray-300 text-gray-700 px-6 py-3 rounded-xl hover:bg-gray-100 transition flex items-center justify-center gap-2"
+                >
+                  {t("heroSection.secondary")}
+                  <ArrowRight className="w-4 h-4" />
+                </Link>
+              </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.5 }}
+                className="grid grid-cols-3 gap-4 mt-8 pt-6 border-t border-gray-200"
+              >
+                {statsKeys.map((statKey, idx) => {
+                  const Icon = statsIcons[idx % statsIcons.length];
+                  return (
+                    <div key={idx} className="flex flex-col items-center gap-1">
+                      <Icon className="w-5 h-5 text-teal-600" />
+                      <span className="text-gray-600 text-xs sm:text-sm text-center">
+                        {t(statKey)}
+                      </span>
+                    </div>
+                  );
+                })}
+              </motion.div>
             </div>
 
             <motion.div
-              initial={{ opacity: 0, x: 40 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6, delay: 0.7 }}
-              className="absolute -top-4 -right-4 bg-teal-600 rounded-xl p-3 shadow-xl"
+              initial={{ opacity: 0, scale: 0.85 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.8 }}
+              className="relative hidden lg:block mt-6 lg:mt-0"
             >
-              <div className="text-white text-xs sm:text-sm text-center whitespace-nowrap">
-                {t(floatingLabelKey)}
+              <div className="relative rounded-2xl overflow-hidden shadow-xl max-w-md mx-auto lg:max-w-none">
+                {finalHeroImage}
+                <div className="absolute inset-0 bg-linear-to-t from-gray-100/30 to-transparent" />
               </div>
+
+              <motion.div
+                initial={{ opacity: 0, x: 40 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.6, delay: 0.7 }}
+                className="absolute -top-4 -right-4 bg-teal-600 rounded-xl p-3 shadow-xl"
+              >
+                <div className="text-white text-xs sm:text-sm text-center whitespace-nowrap">
+                  {t(floatingLabelKey)}
+                </div>
+              </motion.div>
             </motion.div>
-          </motion.div>
+          </div>
         </div>
+      </section>
+    );
+  }
+
+  const pageTitle = getPageTitle();
+  const pageIcon = getPageIcon();
+
+  return (
+    <section className="relative overflow-hidden min-h-[calc(100vh-80px)] flex items-center justify-center bg-linear-to-br from-teal-700 via-teal-600 to-teal-800">
+      <div className="absolute inset-0 opacity-20 pointer-events-none">
+        <div className="absolute top-20 left-10 w-72 h-72 bg-teal-300 rounded-full mix-blend-multiply filter blur-xl animate-pulse" />
+        <div className="absolute bottom-20 right-10 w-96 h-96 bg-teal-300 rounded-full mix-blend-multiply filter blur-xl animate-pulse delay-1000" />
+        <div className="absolute top-1/2 left-1/2 w-80 h-80 bg-teal-300 rounded-full mix-blend-multiply filter blur-xl animate-pulse delay-2000 -translate-x-1/2 -translate-y-1/2" />
       </div>
+
+      <motion.div
+        initial={{ opacity: 0, scale: 0.8 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.6 }}
+        className="text-center px-4 z-10"
+      >
+        <motion.div
+          animate={{ 
+            y: [0, -15, 0],
+          }}
+          transition={{ 
+            duration: 3,
+            repeat: Infinity,
+            ease: "easeInOut"
+          }}
+          className="text-white/30 mb-6"
+        >
+          {pageIcon}
+        </motion.div>
+        
+        <h1 className="text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-bold text-white mb-4 tracking-tight">
+          {pageTitle}
+        </h1>
+        
+        <div className="w-24 h-1 bg-white/40 mx-auto rounded-full mt-6" />
+      </motion.div>
     </section>
   );
 }
