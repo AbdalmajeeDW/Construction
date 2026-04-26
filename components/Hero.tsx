@@ -32,11 +32,7 @@ export default function Hero({
   titleHighlightKey = "heroSection.titleHighlight",
   titleSuffixKey = "heroSection.title2",
   descriptionKey = "heroSection.description",
-  statsKeys = [
-    "heroSection.stat1",
-    "heroSection.stat2",
-    "heroSection.stat3",
-  ],
+  statsKeys = ["heroSection.stat1", "heroSection.stat2", "heroSection.stat3"],
   floatingLabelKey = "heroSection.floatingLabel",
   heroImage = (
     <Image
@@ -52,16 +48,14 @@ export default function Hero({
 
   return (
     <section className="relative overflow-hidden min-h-[calc(100vh-80px)] flex items-center bg-linear-to-br from-gray-100 via-gray-400 to-gray-100">
-      
       <div className="absolute inset-0 opacity-25">
         <div className="absolute top-20 left-10 w-72 h-72 bg-blue-300 rounded-full mix-blend-multiply filter blur-xl animate-pulse" />
         <div className="absolute bottom-20 right-10 w-96 h-96 bg-indigo-300 rounded-full mix-blend-multiply filter blur-xl animate-pulse delay-1000" />
         <div className="absolute top-1/2 left-1/2 w-80 h-80 bg-blue-300 rounded-full mix-blend-multiply filter blur-xl animate-pulse delay-2000 -translate-x-1/2 -translate-y-1/2" />
       </div>
 
-      <div className="relative mx-auto w-full  px-4 sm:px-6 lg:px-8 py-6 sm:py-10 md:py-0">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-10 items-center">
-
+      <div className="relative mx-auto w-full  px-4 sm:px-6 lg:px-8 py-6 sm:py-10 md:py-10 ">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-10  items-center">
           <div className="text-left">
             <motion.div
               initial={{ opacity: 0, x: 40 }}
@@ -103,16 +97,21 @@ export default function Hero({
               transition={{ duration: 0.6, delay: 0.4 }}
               className="mt-6 sm:mt-8 flex flex-col sm:flex-row gap-3"
             >
-              <Link href="/services" className="bg-teal-600 text-white px-6 py-3 rounded-xl flex items-center justify-center gap-2 shadow-lg hover:scale-105 transition">
+              <Link
+                href="/services"
+                className="bg-teal-600 text-white px-6 py-3 rounded-xl flex items-center justify-center gap-2 shadow-lg hover:scale-105 transition"
+              >
                 {t("heroSection.cta")}
                 <ArrowRight className="w-4 h-4" />
               </Link>
-          
- <Link href="/projects" className="border border-gray-400 text-gray-700 px-6 py-3 rounded-xl hover:bg-gray-200 transition flex items-center justify-center gap-2">
+
+              <Link
+                href="/projects"
+                className="border border-gray-400 text-gray-700 px-6 py-3 rounded-xl hover:bg-gray-200 transition flex items-center justify-center gap-2"
+              >
                 {t("heroSection.secondary")}
                 <ArrowRight className="w-4 h-4" />
               </Link>
-          
             </motion.div>
 
             <motion.div
