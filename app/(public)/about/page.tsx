@@ -1,7 +1,7 @@
 import About from "@/components/About";
 import Hero from "@/components/Hero";
-import React from "react";
-
+import Image from "next/image";
+import about from '../../../public/about.jpg'
 export default function AboutPage() {
   return (
     <div>
@@ -15,7 +15,7 @@ export default function AboutPage() {
         btnGalleryKey="aboutHero.btnGallery"
         statsKeys={["aboutHero.stat1", "aboutHero.stat2", "aboutHero.stat3"]}
         floatingLabelKey="aboutHero.floatingLabel"
-        heroImage="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=800"
+        heroImage={<Image src={about} alt="Contact Us" className="w-full h-auto rounded-2xl" />}
       />
 
       <About />

@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { Menu, X, Phone, Mail, Globe } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import Image from "next/image";
 import Logo from "../public/1.png";
 import LanguageSwitcher from "./LanguageSwitcher";
@@ -26,6 +26,7 @@ export default function Navbar() {
     { name: t("links.services"), href: "/services" },
     { name: t("links.projects"), href: "/projects" },
     { name: t("links.about"), href: "/about" },
+    { name: t("links.contact"), href: "/contact" },
   ];
 
   return (
@@ -37,7 +38,7 @@ export default function Navbar() {
         isScrolled ? "py-3 bg-black/20 backdrop-blur-md" : "pt-4 bg-transparent"
       }`}
     >
-      <div className="container px-4 mx-auto">
+      <div className="px-4 sm:px-6 lg:px-8  mx-auto">
         <div className="flex justify-between items-center">
           <motion.a
             href="#"
@@ -48,7 +49,7 @@ export default function Navbar() {
               <Image src={Logo} width={75} height={75} alt="" />
             </span>
           </motion.a>
-          <div className="hidden md:flex items-center gap-10">
+          <div className="hidden md:hidden lg:flex items-center gap-10">
             {navLinks.map((link) => (
               <motion.a
                 key={link.name}
@@ -67,7 +68,7 @@ export default function Navbar() {
 
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="md:hidden p-2 rounded-lg text-white"
+            className="lg:hidden p-2 rounded-lg text-white"
           >
             {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </button>
@@ -78,7 +79,7 @@ export default function Navbar() {
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
-            className="md:hidden mt-6 py-4 bg-white/95 backdrop-blur-md rounded-xl shadow-xl"
+            className="lg:hidden mt-6 py-4 bg-white/95 backdrop-blur-md rounded-xl shadow-xl"
           >
             {navLinks.map((link) => (
               <a

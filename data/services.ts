@@ -13,14 +13,17 @@ import Firstpathroom from "../public/Bathroom/secondProject/2.jpeg";
 import Firstpathroom3 from "../public/Bathroom/secondProject/3.jpeg";
 import FirstFlooring from "../public/Flooring/firstProject/3.jpeg";
 import Painting from "../public/Painting/firstProject/1.jpeg";
-
+import wood from '../public/wood.jpg'
+import Insulation from '../public/Insulation.jpg'
+import project from '../public/project.jpg'
+import Electrical from '../public/Electrical.jpg'
 export const categories = (t: TFunction) => [
   {
     id: 1,
     name: t("servicesCard.categories.roughConstruction.name"),
     icon: Home,
     description: t("servicesCard.categories.roughConstruction.description"),
-    image: "https://images.unsplash.com/photo-1581091226033-d5c48150dbaa?w=600",
+    image: project,
     subServices: [
       t("servicesCard.categories.roughConstruction.subServices.demolition"),
       t("servicesCard.categories.roughConstruction.subServices.preparatory"),
@@ -37,7 +40,7 @@ export const categories = (t: TFunction) => [
     name: t("servicesCard.categories.electrical.name"),
     icon: Zap,
     description: t("servicesCard.categories.electrical.description"),
-    image: "https://images.unsplash.com/photo-1621905252507-b35492cc74b4?w=600",
+    image: Electrical,
     subServices: [
       t("servicesCard.categories.electrical.subServices.electrical"),
     ],
@@ -56,7 +59,7 @@ export const categories = (t: TFunction) => [
     name: t("servicesCard.categories.insulation.name"),
     icon: Thermometer,
     description: t("servicesCard.categories.insulation.description"),
-    image: "https://images.unsplash.com/photo-1581091226033-d5c48150dbaa?w=600",
+    image: Insulation,
     subServices: [
       t("servicesCard.categories.insulation.subServices.insulation"),
     ],
@@ -90,7 +93,7 @@ export const categories = (t: TFunction) => [
     name: t("servicesCard.categories.installation.name"),
     icon: DoorOpen,
     description: t("servicesCard.categories.installation.description"),
-    image: "https://images.unsplash.com/photo-1583845112203-2932996b3b68?w=600",
+    image: wood,
     subServices: [
       t("servicesCard.categories.installation.subServices.doorsFrames"),
       t("servicesCard.categories.installation.subServices.kitchen"),

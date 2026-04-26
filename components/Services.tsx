@@ -15,32 +15,42 @@ export default function Categories() {
   const [expandedId, setExpandedId] = useState<number | null>(null);
   const categoriesData = categories(t);
   const sliceCategoriesData =
-    path != "/services" ? categoriesData.slice(0, 3) : categoriesData;
+    path != "/services" ? categoriesData.slice(0, 4) : categoriesData;
 
   return (
-    <section ref={ref} className="py-24 bg-linear-to-b from-white to-slate-50">
-      <div className="container px-4 mx-auto">
+    <section ref={ref} className="py-12 sm:py-16 md:py-20 lg:py-24 bg-linear-to-b from-white to-slate-50">
+      <div className="mx-auto px-4 sm:px-6 lg:px-8">
+        
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="text-center mb-12"
+          className="text-center mb-10 sm:mb-12 md:mb-16"
         >
-          <span className="inline-block px-4 py-2 bg-teal-100 text-teal-700 rounded-full text-sm mb-4">
+          <span className="inline-block px-3 sm:px-4 py-1.5 sm:py-2 bg-teal-100 text-teal-700 rounded-full text-xs sm:text-sm mb-3 sm:mb-4">
             {t("servicesSection.badge")}
           </span>
-          <h2 className="text-4xl md:text-5xl font-bold text-slate-800 mb-4">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-slate-800 mb-3 sm:mb-4 px-4">
             {t("servicesSection.title")}{" "}
             <span className="text-teal-600">
               {t("servicesSection.titleHighlight")}
             </span>{" "}
-            {t("servicesSection.titleSuffix")}
+            <span className="block sm:inline">{t("servicesSection.titleSuffix")}</span>
           </h2>
-          <p className="text-slate-600 max-w-2xl mx-auto text-lg">
+          <p className="text-slate-600 max-w-2xl mx-auto text-sm sm:text-base md:text-lg px-4">
             {t("servicesSection.description")}
           </p>
         </motion.div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+        <div className="
+          grid 
+          grid-cols-1 
+          sm:grid-cols-2 
+          lg:grid-cols-3 
+          xl:grid-cols-4 
+          2xl:grid-cols-5
+          gap-4 sm:gap-5 md:gap-6
+        ">
           {sliceCategoriesData.map((category, idx) => (
             <motion.div
               key={category.id}
@@ -48,9 +58,9 @@ export default function Categories() {
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.5, delay: idx * 0.1 }}
               whileHover={{ y: -5 }}
-              className="bg-white rounded-xl shadow-md hover:shadow-xl transition-all overflow-hidden border border-slate-100 group"
+              className="bg-white rounded-xl sm:rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden border border-slate-100 group h-full flex flex-col"
             >
-              <div className="relative h-48 overflow-hidden">
+              <div className="relative h-40 sm:h-44 md:h-48 lg:h-52 overflow-hidden bg-slate-100 shrink-0">
                 <Image
                   width={400}
                   height={400}
@@ -58,28 +68,31 @@ export default function Categories() {
                   alt={category.name}
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                 />
-                <div className="absolute inset-0 bg-linear-to-t from-black/50 to-transparent" />
-                <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-sm rounded-lg p-2">
-                  <category.icon className="w-5 h-5 text-teal-600" />
+                <div className="absolute inset-0 bg-linear-to-t from-black/40 via-black/0 to-transparent" />
+                
+                <div className="absolute top-3 left-3 sm:top-4 sm:left-4 bg-white/90 backdrop-blur-sm rounded-lg p-1.5 sm:p-2 shadow-sm">
+                  <category.icon className="w-4 h-4 sm:w-5 sm:h-5 text-teal-600" />
                 </div>
               </div>
 
-              <div className="p-5">
-                <h3 className="font-bold text-xl text-slate-800 mb-2">
+              <div className="p-4 sm:p-5 flex-1 flex flex-col">
+                <h3 className="font-bold text-lg sm:text-xl text-slate-800 mb-1 sm:mb-2 line-clamp-1">
                   {category.name}
                 </h3>
-                <p className="text-slate-500 text-sm mb-4 line-clamp-2">
+                
+                <p className="text-slate-500 text-xs sm:text-sm mb-3 sm:mb-4 line-clamp-2">
                   {category.description}
                 </p>
 
-                <div className="flex flex-wrap gap-2 mb-4">
+                {/* Sub-services Tags */}
+                <div className="flex flex-wrap gap-1.5 sm:gap-2 mb-3 sm:mb-4">
                   {category.subServices.slice(0, 3).map((service, i) => (
                     <span
                       key={i}
-                      className="text-xs bg-slate-100 text-slate-600 px-2 py-1 rounded-full"
+                      className="text-[10px] sm:text-xs bg-slate-100 text-slate-600 px-1.5 sm:px-2 py-0.5 sm:py-1 rounded-full whitespace-nowrap"
                     >
-                      {service.length > 20
-                        ? service.slice(0, 18) + "..."
+                      {service.length > 15
+                        ? service.slice(0, 12) + "..."
                         : service}
                     </span>
                   ))}
@@ -90,11 +103,13 @@ export default function Categories() {
                           expandedId === category.id ? null : category.id,
                         )
                       }
-                      className="text-xs text-teal-600 hover:text-teal-700 font-medium"
+                      className="text-[10px] sm:text-xs text-teal-600 hover:text-teal-700 font-medium"
                     >
                       {expandedId === category.id
-                        ? "Minder"
-                        : `+${category.subServices.length - 3} meer`}
+                        ? t("servicesSection.showLess") || "Minder"
+                        : `+${category.subServices.length - 3} ${
+                            t("servicesSection.more") || "meer"
+                          }`}
                     </button>
                   )}
                 </div>
@@ -105,16 +120,17 @@ export default function Categories() {
                       initial={{ opacity: 0, height: 0 }}
                       animate={{ opacity: 1, height: "auto" }}
                       exit={{ opacity: 0, height: 0 }}
-                      className="mb-4 pt-2 border-t border-slate-100"
+                      transition={{ duration: 0.3 }}
+                      className="mb-3 pt-2 border-t border-slate-100"
                     >
-                      <div className="flex flex-wrap gap-2">
+                      <div className="flex flex-wrap gap-1.5 sm:gap-2">
                         {category.subServices.slice(3).map((service, i) => (
                           <span
                             key={i}
-                            className="text-xs bg-slate-100 text-slate-600 px-2 py-1 rounded-full"
+                            className="text-[10px] sm:text-xs bg-slate-100 text-slate-600 px-1.5 sm:px-2 py-0.5 sm:py-1 rounded-full"
                           >
-                            {service.length > 20
-                              ? service.slice(0, 18) + "..."
+                            {service.length > 15
+                              ? service.slice(0, 12) + "..."
                               : service}
                           </span>
                         ))}
@@ -125,16 +141,27 @@ export default function Categories() {
             </motion.div>
           ))}
         </div>
+
         {path != "/services" && (
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.5 }}
-            className="text-center mt-10"
+            className="text-center mt-8 sm:mt-10 md:mt-12"
           >
             <button
               onClick={() => router.push("/services")}
-              className="bg-white border-2 border-teal-600 text-teal-600 px-8 py-3 rounded-xl font-semibold hover:bg-teal-600 hover:text-white transition-all hover:shadow-lg inline-flex items-center gap-2"
+              className="
+                 border-2 border-teal-600 text-white 
+                px-6 sm:px-8 py-2.5 sm:py-3 
+                text-sm sm:text-base font-semibold 
+                rounded-lg sm:rounded-xl 
+                bg-teal-600 hover:text-white 
+                transition-all duration-300 
+                hover:shadow-lg hover:scale-105
+                active:scale-95
+                inline-flex items-center gap-2
+              "
             >
               {t("servicesSection.viewAll")}
             </button>

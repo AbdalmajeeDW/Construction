@@ -1,3 +1,4 @@
+// components/I18nProvider.tsx
 "use client";
 
 import { useEffect, useState } from "react";
@@ -8,16 +9,18 @@ export default function I18nProvider({
 }: {
   children: React.ReactNode;
 }) {
-  const [ready, setReady] = useState(false);
+  const [isReady, setIsReady] = useState(false);
 
   useEffect(() => {
-    const savedLang = localStorage.getItem("lang") || "en";
+    const savedLang = localStorage.getItem("lang") || "nl";
     i18n.changeLanguage(savedLang).then(() => {
-      setReady(true);
+      setIsReady(true);
     });
   }, []);
 
-  if (!ready) return null;
+  if (!isReady) {
+    return <div style={{ visibility: "hidden" }}>{children}</div>;
+  }
 
   return <>{children}</>;
 }

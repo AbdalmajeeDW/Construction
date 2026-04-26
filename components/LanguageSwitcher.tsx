@@ -27,10 +27,10 @@ export default function LanguageSwitcher() {
   };
 
   return (
-    <div className="relative inline-block">
+    <div className="relative inline-block ">
       <motion.button
         onClick={toggleLanguage}
-        className="flex items-center gap-2 px-4 py-2.5 rounded-xl border border-white/40 text-white hover:bg-white hover:text-teal-600 transition-all duration-300"
+        className="flex items-center  cursor-pointer gap-2 px-4 py-2.5 rounded-xl border border-white/40 text-white hover:bg-white hover:text-teal-600 transition-all duration-300"
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
       >

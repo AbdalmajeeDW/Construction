@@ -3,7 +3,8 @@
 import Hero from "@/components/Hero";
 import Navbar from "@/components/Navbar";
 import Categories from "@/components/Services";
-
+import Image from "next/image";
+import services from '../../../public/services.jpg'
 export default function page() {
   return (
     <section id="categories">
@@ -22,7 +23,7 @@ export default function page() {
           "servicesHero.stat3",
         ]}
         floatingLabelKey="servicesHero.floatingLabel"
-        heroImage="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=800"
+        heroImage={<Image src={services} alt="Contact Us" className="w-full h-auto rounded-2xl" />}
       />
       <Categories />
     </section>
