@@ -108,7 +108,7 @@ export default function Navbar() {
             <button
               onClick={() => setIsOpen(!isOpen)}
               className={`lg:hidden p-2 rounded-lg transition-colors ${
-                isScrolled || !isHome ? "text-gray-700" : "text-white"
+                isScrolled || !isHome ? "text-white" : "text-white"
               }`}
             >
               {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
