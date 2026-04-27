@@ -32,7 +32,7 @@ export default function ViewService() {
 
   if (!service) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-50 to-gray-100">
+      <div className="min-h-screen flex items-center justify-center bg-linear-to-br from-gray-50 to-gray-100">
         <div className="text-center px-4">
           <div className="text-6xl mb-4">🔧</div>
           <h2 className="text-2xl font-bold text-gray-800 mb-2">
@@ -73,7 +73,7 @@ export default function ViewService() {
 
   return (
     <>
-      <section className="relative overflow-hidden px-4 sm:px-6 lg:px-4 bg-gradient-to-br from-teal-700 via-teal-600 to-teal-800 py-10">
+      <section className="relative overflow-hidden px-4 sm:px-6 lg:px-4 bg-linear-to-br from-teal-700 via-teal-600 to-teal-800 py-10">
         <div className="absolute inset-0 opacity-10">
           <div className="absolute top-20 left-10 w-72 h-72 bg-white rounded-full blur-3xl" />
           <div className="absolute bottom-20 right-10 w-96 h-96 bg-white rounded-full blur-3xl" />
@@ -82,7 +82,7 @@ export default function ViewService() {
         <div className="relative  px-4 mx-auto">
           <button
             onClick={() => router.push('/services')}
-            className="inline-flex items-center gap-2 text-white/80 hover:text-white mb-8 transition group"
+            className="inline-flex items-center cursor-pointer gap-2 text-white/80 hover:text-white mb-8 transition group"
           >
             <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition" />
             <span>{t('servicePage.allServices')}</span>
@@ -120,7 +120,7 @@ export default function ViewService() {
                   height={400}
                   className="w-full h-80 object-cover"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
+                <div className="absolute inset-0 bg-linear-to-t from-black/50 to-transparent" />
               </div>
               <div className="absolute -bottom-5 -right-5 bg-teal-500 rounded-xl p-4 shadow-lg">
                 <div className="text-white text-center">
@@ -191,7 +191,7 @@ export default function ViewService() {
                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                         {service.subServices.map((sub, idx) => (
                           <div key={idx} className="flex items-center gap-3 text-gray-600">
-                            <CheckCircle className="w-5 h-5 text-teal-500 flex-shrink-0" />
+                            <CheckCircle className="w-5 h-5 text-teal-500 shrink-0" />
                             <span>{sub}</span>
                           </div>
                         ))}
@@ -276,7 +276,6 @@ export default function ViewService() {
         </div>
       </section>
 
-      {/* CTA Section */}
       <section className="py-16 bg-teal-600">
         <div className=" px-4 mx-auto max-w-4xl text-center">
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">

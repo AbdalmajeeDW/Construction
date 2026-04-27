@@ -208,7 +208,7 @@ export default function Hero({
   const pageIcon = getPageIcon();
 
   return (
-    <section className="relative overflow-hidden py-5 sm:py-5 md:py-5 bg-linear-to-br from-teal-700 via-teal-600 to-teal-800">
+    <section className="relative  overflow-hidden py-20  bg-linear-to-br from-teal-700 via-teal-600 to-teal-700">
       <div className="absolute inset-0 opacity-20 pointer-events-none">
         <div className="absolute top-20 left-10 w-72 h-72 bg-teal-300 rounded-full mix-blend-multiply filter blur-xl animate-pulse" />
         <div className="absolute bottom-20 right-10 w-96 h-96 bg-teal-300 rounded-full mix-blend-multiply filter blur-xl animate-pulse delay-1000" />
@@ -241,7 +241,7 @@ export default function Hero({
         
            <Link
             href="/"
-            className="inline-flex items-center cursor-pointer gap-2 text-white/80 hover:text-white hover:bg-black/30 backdrop-blur-sm  rounded-full transition-all duration-300 text-sm  group"
+            className="inline-flex items-center cursor-pointer gap-2 text-white/80 hover:text-white  backdrop-blur-sm  rounded-full transition-all duration-300 text-sm  group"
           >
             <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
             <span>{t("heroSection.backToHome") }</span>

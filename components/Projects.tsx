@@ -7,6 +7,7 @@ import { useTranslation } from "react-i18next";
 import Image, { StaticImageData } from "next/image";
 import { projects } from "@/data/projects";
 import { useRouter, usePathname } from "next/navigation";
+import Motion from "./Motion";
 
 interface card {
   onView?: (id: number) => void;
@@ -34,14 +35,12 @@ export default function Projects({ onView }: card) {
   return (
     <section ref={ref} className="py-12 sm:py-16 md:py-20 lg:py-24 bg-linear-to-b from-slate-50 to-white">
       <div className="mx-auto px-4 sm:px-6 lg:px-8">
-        
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-8 sm:mb-12 md:mb-16"
+          <Motion
+           
+                           className="text-center mb-8 sm:mb-12 md:mb-16"
+
         >
-          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-slate-800 mb-3 sm:mb-4">
+             <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-slate-800 mb-3 sm:mb-4">
             {t("projectsSection.title")}
             <span className="text-teal-600">
               {" "}
@@ -51,7 +50,9 @@ export default function Projects({ onView }: card) {
           <p className="text-slate-600 max-w-2xl mx-auto text-sm sm:text-base md:text-lg px-4">
             {t("projectsSection.description")}
           </p>
-        </motion.div>
+
+                </Motion>
+     
 
         <div className="
           grid 
@@ -63,12 +64,9 @@ export default function Projects({ onView }: card) {
           gap-4 sm:gap-5 md:gap-6
         ">
           {sliceCategoriesData.map((product, idx) => (
-            <motion.div
+            <Motion
               key={product.id}
-              initial={{ opacity: 0, y: 50 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.5, delay: idx * 0.1 }}
-              whileHover={{ y: -5 }}
+          
               className="group h-full"
             >
               <div className="bg-white rounded-xl sm:rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 h-full flex flex-col">
@@ -108,16 +106,14 @@ export default function Projects({ onView }: card) {
                   </button>
                 </div>
               </div>
-            </motion.div>
+            </Motion>
           ))}
         </div>
 
         {/* View All Button */}
         {!flagLink && (
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6, delay: 0.5 }}
+          <Motion
+      
             className="text-center mt-8 sm:mt-10 md:mt-12"
           >
             <button
@@ -135,7 +131,7 @@ export default function Projects({ onView }: card) {
             >
               {t("projectsSection.buttonViewAll")}
             </button>
-          </motion.div>
+          </Motion>
         )}
       </div>
     </section>

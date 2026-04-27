@@ -6,6 +6,7 @@ import { CheckCircle, Target, Eye, Building2 } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
+import Motion from "./Motion";
 
 export default function About() {
   const ref = useRef(null);
@@ -19,13 +20,7 @@ export default function About() {
       className="py-12 sm:py-16 md:py-20 lg:py-24 bg-linear-to-b from-slate-50 to-white"
     >
       <div className="mx-auto px-4 sm:px-6 lg:px-8">
-        
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-10 sm:mb-12 md:mb-16"
-        >
+        <Motion className="text-center mb-10 sm:mb-12 md:mb-16">
           <span className="inline-block px-3 sm:px-4 py-1.5 sm:py-2 bg-teal-100 text-teal-700 rounded-full text-xs sm:text-sm mb-3 sm:mb-4">
             {t("aboutSection.badge")}
           </span>
@@ -38,12 +33,10 @@ export default function About() {
           <p className="text-slate-600 max-w-2xl mx-auto text-sm sm:text-base md:text-lg px-4">
             {t("aboutSection.subtitle")}
           </p>
-        </motion.div>
+        </Motion>
 
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, delay: 0.3 }}
+        <Motion
+         
           className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 md:gap-6 lg:gap-8 mb-10 sm:mb-12 md:mb-16"
         >
           <div className="bg-white rounded-xl sm:rounded-2xl p-5 sm:p-6 shadow-lg hover:shadow-2xl transition-all duration-300 border border-slate-100 h-full group flex flex-col">
@@ -87,12 +80,10 @@ export default function About() {
               {t("aboutSection.ourVision.description")}
             </p>
           </div>
-        </motion.div>
+        </Motion>
 
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, delay: 0.4 }}
+        <Motion
+  
           className="grid grid-cols-1 lg:grid-cols-2 gap-5 sm:gap-6 md:gap-8"
         >
           <div className="bg-white rounded-xl sm:rounded-2xl p-5 sm:p-6 md:p-8 shadow-lg hover:shadow-2xl transition-all duration-300 border border-slate-100 h-full">
@@ -142,12 +133,10 @@ export default function About() {
               </span>
             </div>
           </div>
-        </motion.div>
+        </Motion>
 
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, delay: 0.6 }}
+        <Motion
+   
           className="text-center mt-10 sm:mt-12 md:mt-16"
         >
           <button
@@ -180,7 +169,7 @@ export default function About() {
               />
             </svg>
           </button>
-        </motion.div>
+        </Motion>
       </div>
     </section>
   );

@@ -6,6 +6,7 @@ import { categories } from "@/data/services";
 import { useTranslation } from "react-i18next";
 import Image from "next/image";
 import { ArrowRight } from "lucide-react";
+import Motion from "./Motion";
 interface card {
   onView?: (id: number) => void;
 }
@@ -19,10 +20,8 @@ export default function Services({ onView }: card) {
   const categoriesData = categories(t);
   const sliceCategoriesData =
     path != "/services" ? categoriesData.slice(0, 4) : categoriesData;
- const handleView = async (id: number) => {
-    // if (flagLink) {
-      onView!(id);
-    // } else router.push(`/project/${id}`);
+  const handleView = async (id: number) => {
+    onView!(id);
   };
   return (
     <section
@@ -30,12 +29,7 @@ export default function Services({ onView }: card) {
       className="py-12 sm:py-16 md:py-20 lg:py-24 bg-linear-to-b from-white to-slate-50"
     >
       <div className="mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-10 sm:mb-12 md:mb-16"
-        >
+        <Motion className="text-center mb-10 sm:mb-12 md:mb-16">
           <span className="inline-block px-3 sm:px-4 py-1.5 sm:py-2 bg-teal-100 text-teal-700 rounded-full text-xs sm:text-sm mb-3 sm:mb-4">
             {t("servicesSection.badge")}
           </span>
@@ -51,7 +45,8 @@ export default function Services({ onView }: card) {
           <p className="text-slate-600 max-w-2xl mx-auto text-sm sm:text-base md:text-lg px-4">
             {t("servicesSection.description")}
           </p>
-        </motion.div>
+        </Motion>
+     
 
         <div
           className="
@@ -65,12 +60,10 @@ export default function Services({ onView }: card) {
         "
         >
           {sliceCategoriesData.map((category, idx) => (
-            <motion.div
+            
+            <Motion
               key={category.id}
-              initial={{ opacity: 0, y: 50 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.5, delay: idx * 0.1 }}
-              whileHover={{ y: -5 }}
+             
               className="bg-white rounded-xl sm:rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden border border-slate-100 group h-full flex flex-col"
             >
               <div className="relative h-40 sm:h-44 md:h-48 lg:h-52 overflow-hidden bg-slate-100 shrink-0">
@@ -97,7 +90,6 @@ export default function Services({ onView }: card) {
                   {category.description}
                 </p>
 
-                {/* Sub-services Tags */}
                 <div className="flex flex-wrap gap-1.5 sm:gap-2 mb-3 sm:mb-4">
                   {category.subServices.slice(0, 3).map((service, i) => (
                     <span
@@ -150,21 +142,21 @@ export default function Services({ onView }: card) {
                       </div>
                     </motion.div>
                   )}
-                  <button onClick={() => handleView(category.id!)}  className="text-teal-600 text-xs sm:text-sm font-semibold inline-flex items-center justify-center gap-1 group-hover:gap-2 transition-all mt-auto">
-            {t("projectsSection.buttonExplore")}
-            <ArrowRight className="w-3 h-3 sm:w-4 sm:h-4" />
-          </button>
+                <button
+                  onClick={() => handleView(category.id!)}
+                  className="text-teal-600 cursor-pointer text-xs sm:text-sm font-semibold inline-flex items-center justify-center gap-1 group-hover:gap-2 transition-all mt-auto"
+                >
+                  {t("projectsSection.buttonExplore")}
+                  <ArrowRight className="w-3 h-3 sm:w-4 sm:h-4" />
+                </button>
               </div>
-            </motion.div>
+            </Motion>
           ))}
-        
         </div>
 
         {path != "/services" && (
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6, delay: 0.5 }}
+          <Motion
+  
             className="text-center mt-8 sm:mt-10 md:mt-12"
           >
             <button
@@ -183,9 +175,8 @@ export default function Services({ onView }: card) {
             >
               {t("servicesSection.viewAll")}
             </button>
-          </motion.div>
+          </Motion>
         )}
-        
       </div>
     </section>
   );
