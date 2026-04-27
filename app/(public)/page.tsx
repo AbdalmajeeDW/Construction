@@ -19,7 +19,7 @@ export default function HomePage() {
       <section id="featured">
         <FeaturedProducts />
       </section>
-      <section id="about">
+      <section >
         <About />
       </section>
     </>
