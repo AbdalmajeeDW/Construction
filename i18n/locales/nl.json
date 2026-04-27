@@ -1,6 +1,6 @@
 {
   "links": {
-    "home": "Home",
+    "home": "Thuis",
     "services": "Onze Diensten",
     "projects": "Onze Projecten",
     "about": "Over Ons",
@@ -19,7 +19,9 @@
     "stat3": "Gecertificeerd",
     "floatingLabel": "😊Klanttevredenheid",
         "cta": "Diensten",
-    "secondary": "Projecten"
+    "secondary": "Projecten",
+    "backToHome": "Terug naar Thuis"
+
   },
   "contactForm": {
     "title": "Contacteer",
@@ -212,7 +214,7 @@
   "footer": {
     "description": "Wij leveren de beste bouwmaterialen en afwerkingen van hoge kwaliteit tegen concurrerende prijzen.",
     "quickLinks": "Snelle Links",
-    "home": "Home",
+    "home": "Thuis",
     "products": "Producten",
     "features": "Kenmerken",
     "aboutUs": "Over Ons",

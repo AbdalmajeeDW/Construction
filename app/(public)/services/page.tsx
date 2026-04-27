@@ -1,28 +1,14 @@
 "use client";
 
 import Hero from "@/components/Hero";
-import Categories from "@/components/Services";
-import Image from "next/image";
-import services from '../../../public/services.jpg'
+import Services from "@/components/Services";
 export default function page() {
   return (
     <section id="categories">
       <Hero
-        badgeKey="servicesHero.badge"
-        titlePrefixKey="servicesHero.titlePrefix"
-        titleHighlightKey="servicesHero.titleHighlight"
-        titleSuffixKey="servicesHero.titleSuffix"
-        descriptionKey="servicesHero.description"
-   
-        statsKeys={[
-          "servicesHero.stat1",
-          "servicesHero.stat2",
-          "servicesHero.stat3",
-        ]}
-        floatingLabelKey="servicesHero.floatingLabel"
-        heroImage={<Image src={services} alt="Contact Us" className="w-full h-auto rounded-2xl" />}
+ 
       />
-      <Categories />
+      <Services />
     </section>
   );
 }

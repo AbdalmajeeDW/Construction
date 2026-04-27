@@ -19,7 +19,9 @@
     "stat1": "Quality Guaranteed",
     "stat2": "Competitive Prices",
     "stat3": "Certified",
-    "floatingLabel": "😊Customer Satisfaction"
+    "floatingLabel": "😊Customer Satisfaction",
+    "backToHome": "Back to Home"
+
   },
   "contactForm": {
     "title": "Contact",

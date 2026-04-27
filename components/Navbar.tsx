@@ -37,11 +37,9 @@ export default function Navbar() {
     if (isScrolled) {
       return "bg-gray-400 backdrop-blur-md shadow-sm";
     }
-    
     if (isHome) {
       return "bg-transparent";
     }
-    
     return "bg-gray-400 backdrop-blur-sm";
   };
 
@@ -70,10 +68,35 @@ export default function Navbar() {
         initial={{ y: -100 }}
         animate={{ y: 0 }}
         transition={{ duration: 0.5 }}
-        className={`fixed top-0 left-0 right-0 h-20  z-50 transition-all duration-500 ${getNavbarStyle()}`}
+        className={`fixed top-0 left-0 right-0 h-20 z-50 transition-all duration-500 ${getNavbarStyle()}`}
       >
         <div className="px-4 sm:px-6 lg:px-8 mx-auto h-full">
-          <div className="flex justify-between items-center h-full">
+          <div className="flex justify-between items-center h-full lg:hidden">
+            <div className="flex items-center">
+              <LanguageSwitcher />
+            </div>
+
+            <div className="absolute left-1/2 transform -translate-x-1/2">
+              <motion.a
+                href="/"
+                className="text-3xl font-bold"
+                whileHover={{ scale: 1.05 }}
+              >
+                <span className="inline-block">
+                  <Image src={Logo} width={75} height={75} alt="Logo" />
+                </span>
+              </motion.a>
+            </div>
+
+            <button
+              onClick={() => setIsOpen(!isOpen)}
+              className="p-2 rounded-lg transition-colors text-white"
+            >
+              {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            </button>
+          </div>
+
+          <div className="hidden lg:flex justify-between items-center h-full">
             <motion.a
               href="/"
               className="text-3xl md:text-4xl font-bold"
@@ -83,8 +106,8 @@ export default function Navbar() {
                 <Image src={Logo} width={75} height={75} alt="Logo" />
               </span>
             </motion.a>
-            
-            <div className="hidden lg:flex items-center gap-8">
+
+            <div className="flex items-center gap-8">
               {navLinks.map((link) => (
                 <motion.a
                   key={link.name}
@@ -101,18 +124,9 @@ export default function Navbar() {
               ))}
             </div>
 
-            <div className="flex items-center gap-4">
+            <div className="flex items-center">
               <LanguageSwitcher />
             </div>
-
-            <button
-              onClick={() => setIsOpen(!isOpen)}
-              className={`lg:hidden p-2 rounded-lg transition-colors ${
-                isScrolled || !isHome ? "text-white" : "text-white"
-              }`}
-            >
-              {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-            </button>
           </div>
 
           {isOpen && (

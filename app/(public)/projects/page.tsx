@@ -16,19 +16,7 @@ export default function ProjectsPage() {
   return (
     <div>
       <Hero
-        badgeKey="projectsHero.badge"
-        titlePrefixKey="projectsHero.titlePrefix"
-        titleHighlightKey="projectsHero.titleHighlight"
-        titleSuffixKey="projectsHero.titleSuffix"
-        descriptionKey="projectsHero.description"
-    
-        statsKeys={[
-          "projectsHero.stat1",
-          "projectsHero.stat2",
-          "projectsHero.stat3",
-        ]}
-        floatingLabelKey="projectsHero.floatingLabel"
- heroImage={<Image src={project} alt="Contact Us" className="w-full h-auto rounded-2xl" />}      />
+    />
 
       <Projects onView={handleView} />
     </div>

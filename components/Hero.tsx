@@ -13,6 +13,7 @@ import {
   Users,
   Mail,
   Home,
+  ArrowLeft,
 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -88,14 +89,14 @@ export default function Hero({
     );
 
     return (
-      <section className="relative overflow-hidden min-h-[calc(100vh-80px)] flex items-center bg-linear-to-br from-gray-100 via-teal-100 to-gray-100">
+      <section className="relative overflow-hidden py-5 sm:py-5 md:py-5 flex items-center bg-linear-to-br from-gray-100 via-teal-100 to-gray-100">
         <div className="absolute inset-0 opacity-20 pointer-events-none">
           <div className="absolute top-20 left-10 w-72 h-72 bg-teal-300 rounded-full mix-blend-multiply filter blur-xl animate-pulse" />
           <div className="absolute bottom-20 right-10 w-96 h-96 bg-teal-300 rounded-full mix-blend-multiply filter blur-xl animate-pulse delay-1000" />
           <div className="absolute top-1/2 left-1/2 w-80 h-80 bg-teal-300 rounded-full mix-blend-multiply filter blur-xl animate-pulse delay-2000 -translate-x-1/2 -translate-y-1/2" />
         </div>
 
-        <div className="relative mx-auto w-full px-4 sm:px-6 lg:px-8 py-6 sm:py-10 md:py-10 z-10">
+        <div className="relative mx-auto w-full px-4 sm:px-6 lg:px-8 z-10">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-10 items-center">
             <div className="text-left">
               <motion.div
@@ -138,7 +139,7 @@ export default function Hero({
               >
                 <Link
                   href="/services"
-                  className="bg-teal-600 text-white px-6 py-3 rounded-xl flex items-center justify-center gap-2 shadow-lg hover:scale-105 transition"
+                  className="bg-teal-600 cursor-pointer text-white px-6 py-3 rounded-xl flex items-center justify-center gap-2 shadow-lg hover:scale-105 transition"
                 >
                   {t("heroSection.cta")}
                   <ArrowRight className="w-4 h-4" />
@@ -146,7 +147,7 @@ export default function Hero({
 
                 <Link
                   href="/projects"
-                  className="border border-gray-300 text-gray-700 px-6 py-3 rounded-xl hover:bg-gray-100 transition flex items-center justify-center gap-2"
+                  className="border cursor-pointer border-gray-300 text-gray-700 px-6 py-3 rounded-xl hover:bg-gray-100 transition flex items-center justify-center gap-2"
                 >
                   {t("heroSection.secondary")}
                   <ArrowRight className="w-4 h-4" />
@@ -205,39 +206,63 @@ export default function Hero({
   const pageIcon = getPageIcon();
 
   return (
-    <section className="relative overflow-hidden min-h-[calc(100vh-80px)] flex items-center justify-center bg-linear-to-br from-teal-700 via-teal-600 to-teal-800">
+    <section className="relative overflow-hidden py-5 sm:py-5 md:py-5 bg-linear-to-br from-teal-700 via-teal-600 to-teal-800">
       <div className="absolute inset-0 opacity-20 pointer-events-none">
         <div className="absolute top-20 left-10 w-72 h-72 bg-teal-300 rounded-full mix-blend-multiply filter blur-xl animate-pulse" />
         <div className="absolute bottom-20 right-10 w-96 h-96 bg-teal-300 rounded-full mix-blend-multiply filter blur-xl animate-pulse delay-1000" />
         <div className="absolute top-1/2 left-1/2 w-80 h-80 bg-teal-300 rounded-full mix-blend-multiply filter blur-xl animate-pulse delay-2000 -translate-x-1/2 -translate-y-1/2" />
       </div>
 
-      <motion.div
-        initial={{ opacity: 0, scale: 0.8 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 0.6 }}
-        className="text-center px-4 z-10"
-      >
+      <div className="absolute top-8 left-4 sm:left-8 lg:left-12 z-30">
         <motion.div
-          animate={{ 
-            y: [0, -15, 0],
-          }}
-          transition={{ 
-            duration: 3,
-            repeat: Infinity,
-            ease: "easeInOut"
-          }}
-          className="text-white/30 mb-6"
+          initial={{ opacity: 0, x: -30 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.5 }}
         >
-          {pageIcon}
+          {/* <Link
+            href="/"
+            className="inline-flex items-center cursor-pointer gap-2 text-white/80 hover:text-white bg-black/20 hover:bg-black/30 backdrop-blur-sm px-4 py-2 rounded-full transition-all duration-300 text-sm sm:text-base group"
+          >
+            <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
+            <span>{t("heroSection.backToHome") || "Back to Home"}</span>
+          </Link> */}
         </motion.div>
+      </div>
+
+      <div className="relative mx-auto w-full px-4 sm:px-6 lg:px-8 z-10">
+        <motion.div
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.6 }}
+          className="text-center"
+        >
         
-        <h1 className="text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-bold text-white mb-4 tracking-tight">
-          {pageTitle}
-        </h1>
-        
-        <div className="w-24 h-1 bg-white/40 mx-auto rounded-full mt-6" />
-      </motion.div>
+           <Link
+            href="/"
+            className="inline-flex items-center cursor-pointer gap-2 text-white/80 hover:text-white hover:bg-black/30 backdrop-blur-sm  rounded-full transition-all duration-300 text-sm  group"
+          >
+            <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
+            <span>{t("heroSection.backToHome") }</span>
+          </Link>
+          <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold text-white mb-4 tracking-tight">
+            {pageTitle}
+          </h1>
+            <motion.div
+            animate={{ 
+              y: [0, -15, 0],
+            }}
+            transition={{ 
+              duration: 3,
+              repeat: Infinity,
+              ease: "easeInOut"
+            }}
+            className="text-white/30 mb-6 absolute bottom-1"
+          >
+            {pageIcon}
+          </motion.div>
+          <div className="w-24 h-1 bg-white/40 mx-auto rounded-full mt-6" />
+        </motion.div>
+      </div>
     </section>
   );
 }

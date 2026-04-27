@@ -6,7 +6,7 @@ import { categories } from "@/data/services";
 import { useTranslation } from "react-i18next";
 import Image from "next/image";
 
-export default function Categories() {
+export default function Services() {
   const ref = useRef(null);
   const { t } = useTranslation();
   const path = usePathname();
