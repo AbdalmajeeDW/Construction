@@ -18,8 +18,6 @@ export default function Services({ onView }: card) {
   const isInView = useInView(ref, { once: true, amount: 0.2 });
   const [expandedId, setExpandedId] = useState<number | null>(null);
   const categoriesData = categories(t);
-  // const sliceCategoriesData =
-  //   path != "/services" ? categoriesData.slice(0, 4) : categoriesData;
   
     const flagLink = path === "/services";
   const sliceCategoriesData = !flagLink
@@ -28,7 +26,7 @@ export default function Services({ onView }: card) {
   const handleView = async (id: number) => {
     if (flagLink) {
       onView!(id);
-    } else router.push(`/project/${id}`);
+    } else router.push(`/service/${id}`);
 
   };
   return (
