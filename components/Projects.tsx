@@ -35,7 +35,6 @@ export default function Projects({ onView }: card) {
     <section ref={ref} className="py-12 sm:py-16 md:py-20 lg:py-24 bg-linear-to-b from-slate-50 to-white">
       <div className="mx-auto px-4 sm:px-6 lg:px-8">
         
-        {/* Header Section */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
@@ -54,7 +53,6 @@ export default function Projects({ onView }: card) {
           </p>
         </motion.div>
 
-        {/* Projects Grid - Responsive */}
         <div className="
           grid 
           grid-cols-1 
@@ -75,7 +73,6 @@ export default function Projects({ onView }: card) {
             >
               <div className="bg-white rounded-xl sm:rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 h-full flex flex-col">
                 
-                {/* Image Container */}
                 <div className="relative h-48 sm:h-52 md:h-56 lg:h-64 overflow-hidden bg-gray-100">
                   {product.image.slice(0, 1).map((e, i) => (
                     <Image
@@ -88,7 +85,6 @@ export default function Projects({ onView }: card) {
                     />
                   ))}
                   
-                  {/* Category Badge */}
                   <div className="absolute top-3 left-3 sm:top-4 sm:left-4">
                     <span className="px-2 py-0.5 sm:px-3 sm:py-1 bg-teal-600 text-white text-[10px] sm:text-xs font-semibold rounded-full">
                       {product.category}
@@ -96,7 +92,6 @@ export default function Projects({ onView }: card) {
                   </div>
                 </div>
 
-                {/* Content */}
                 <div className="p-4 sm:p-5 text-center flex-1 flex flex-col">
                   <h3 className="font-bold text-base sm:text-lg md:text-xl text-slate-800 mb-1 sm:mb-2 line-clamp-2">
                     {product.name}

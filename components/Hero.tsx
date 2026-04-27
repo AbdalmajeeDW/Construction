@@ -22,6 +22,7 @@ import { useTranslation } from "react-i18next";
 import { usePathname } from "next/navigation";
 
 interface HeroProps {
+  title?:string
   badgeKey?: string;
   titlePrefixKey?: string;
   titleHighlightKey?: string;
@@ -34,6 +35,7 @@ interface HeroProps {
 }
 
 export default function Hero({
+  title,
   badgeKey = "heroSection.badge",
   titlePrefixKey = "heroSection.title1",
   titleHighlightKey = "heroSection.titleHighlight",
@@ -245,7 +247,7 @@ export default function Hero({
             <span>{t("heroSection.backToHome") }</span>
           </Link>
           <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold text-white mb-4 tracking-tight">
-            {pageTitle}
+            {pageTitle || title}
           </h1>
             <motion.div
             animate={{ 

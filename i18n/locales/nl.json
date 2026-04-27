@@ -413,5 +413,80 @@
         "textA":"  Dit project toont onze expertise in het creëren van mooie en functionele ruimtes. We zijn er trots op hoogwaardige resultaten te leveren die de verwachtingen van onze klanten overtreffen."
 
 
+  },
+   "servicePage": {
+    "backToServices": "Terug naar Diensten",
+    "professionalService": "Professionele Dienst",
+    "allServices": "Alle Diensten",
+    "serviceBenefits": {
+      "licensed": "Gelicentieerd & Verzekerd",
+      "guaranteed": "Kwaliteit Gegarandeerd",
+      "onTime": "Op Tijd Levering",
+      "freeConsultation": "Gratis Consultatie"
+    },
+    "support247": "Ondersteuning",
+    "tabs": {
+      "details": "Servicedetails",
+      "process": "Ons Proces",
+      "faq": "Veelgestelde Vragen"
+    },
+    "details": {
+      "whatWeOffer": "Wat Wij Bieden",
+      "ourServicesInclude": "Onze Diensten Omvatten:",
+      "quickInfo": "Snelle Info",
+      "serviceId": "Service ID",
+      "duration": "Duur",
+      "warranty": "Garantie",
+      "experience": "Ervaring",
+      "reviews": "beoordelingen",
+      "requestQuote": "Offerte Aanvragen"
+    },
+    "process": {
+      "step1": {
+        "title": "Consultatie",
+        "desc": "Gratis beoordeling van uw wensen"
+      },
+      "step2": {
+        "title": "Planning",
+        "desc": "Gedetailleerd projectplan & offerte"
+      },
+      "step3": {
+        "title": "Uitvoering",
+        "desc": "Professioneel werk door experts"
+      },
+      "step4": {
+        "title": "Oplevering",
+        "desc": "Kwaliteitscontrole & finale overdracht"
+      }
+    },
+    "faq": [
+      {
+        "question": "Hoe lang duurt de service?",
+        "answer": "Typisch 2-5 dagen afhankelijk van de projectomvang."
+      },
+      {
+        "question": "Bieden jullie gratis offertes aan?",
+        "answer": "Ja, wij bieden gratis consultaties en offertes aan."
+      },
+      {
+        "question": "Zijn jullie werknemers gecertificeerd?",
+        "answer": "Al onze technici zijn gecertificeerd en ervaren."
+      },
+      {
+        "question": "Welke gebieden bedienen jullie?",
+        "answer": "Wij bedienen het grootstedelijk gebied."
+      }
+    ],
+    "cta": {
+      "title": "Klaar om te Beginnen?",
+      "subtitle": "Neem vandaag nog contact met ons op voor een gratis consultatie en offerte",
+      "requestQuote": "Offerte Aanvragen",
+      "callUs": "Bel Ons Nu"
+    },
+    "notFound": {
+      "title": "Service Niet Gevonden",
+      "subtitle": "De service die u zoekt bestaat niet",
+      "button": "Terug naar Diensten"
+    }
   }
 }

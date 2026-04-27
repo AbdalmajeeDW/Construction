@@ -65,7 +65,7 @@ export default function ProjectPage() {
 
   return (
     <>
-      <Hero />
+      <Hero title={project.name} />
 
       <section className="py-16 bg-linear-to-b from-slate-50 to-white">
         <div className="container px-4 mx-auto max-w-7xl">

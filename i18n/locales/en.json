@@ -411,5 +411,80 @@
     "year": "2024",
     "textB":"This stunning ",
     "textA":"project showcases our expertise in creating beautiful and functional spaces. We take pride in delivering high-quality results that exceed our clients' expectations."
+  },
+    "servicePage": {
+    "backToServices": "Back to Services",
+    "professionalService": "Professional Service",
+    "allServices": "All Services",
+    "serviceBenefits": {
+      "licensed": "Licensed & Insured",
+      "guaranteed": "Quality Guaranteed",
+      "onTime": "On-Time Delivery",
+      "freeConsultation": "Free Consultation"
+    },
+    "support247": "Support",
+    "tabs": {
+      "details": "Service Details",
+      "process": "Our Process",
+      "faq": "FAQ"
+    },
+    "details": {
+      "whatWeOffer": "What We Offer",
+      "ourServicesInclude": "Our Services Include:",
+      "quickInfo": "Quick Info",
+      "serviceId": "Service ID",
+      "duration": "Duration",
+      "warranty": "Warranty",
+      "experience": "Experience",
+      "reviews": "reviews",
+      "requestQuote": "Request Quote"
+    },
+    "process": {
+      "step1": {
+        "title": "Consultation",
+        "desc": "Free assessment of your needs"
+      },
+      "step2": {
+        "title": "Planning",
+        "desc": "Detailed project plan & quote"
+      },
+      "step3": {
+        "title": "Execution",
+        "desc": "Professional work by experts"
+      },
+      "step4": {
+        "title": "Delivery",
+        "desc": "Quality check & final handover"
+      }
+    },
+    "faq": [
+      {
+        "question": "How long does the service take?",
+        "answer": "Typically 2-5 days depending on project scope."
+      },
+      {
+        "question": "Do you provide free estimates?",
+        "answer": "Yes, we offer free on-site consultations and quotes."
+      },
+      {
+        "question": "Are your workers licensed?",
+        "answer": "All our technicians are certified and experienced."
+      },
+      {
+        "question": "What areas do you serve?",
+        "answer": "We serve the entire metropolitan area."
+      }
+    ],
+    "cta": {
+      "title": "Ready to Get Started?",
+      "subtitle": "Contact us today for a free consultation and quote",
+      "requestQuote": "Request a Quote",
+      "callUs": "Call Us Now"
+    },
+    "notFound": {
+      "title": "Service Not Found",
+      "subtitle": "The service you're looking for doesn't exist",
+      "button": "Back to Services"
+    }
   }
 }

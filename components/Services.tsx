@@ -5,8 +5,11 @@ import { useRouter, usePathname } from "next/navigation";
 import { categories } from "@/data/services";
 import { useTranslation } from "react-i18next";
 import Image from "next/image";
-
-export default function Services() {
+import { ArrowRight } from "lucide-react";
+interface card {
+  onView?: (id: number) => void;
+}
+export default function Services({ onView }: card) {
   const ref = useRef(null);
   const { t } = useTranslation();
   const path = usePathname();
@@ -16,11 +19,17 @@ export default function Services() {
   const categoriesData = categories(t);
   const sliceCategoriesData =
     path != "/services" ? categoriesData.slice(0, 4) : categoriesData;
-
+ const handleView = async (id: number) => {
+    // if (flagLink) {
+      onView!(id);
+    // } else router.push(`/project/${id}`);
+  };
   return (
-    <section ref={ref} className="py-12 sm:py-16 md:py-20 lg:py-24 bg-linear-to-b from-white to-slate-50">
+    <section
+      ref={ref}
+      className="py-12 sm:py-16 md:py-20 lg:py-24 bg-linear-to-b from-white to-slate-50"
+    >
       <div className="mx-auto px-4 sm:px-6 lg:px-8">
-        
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
@@ -35,14 +44,17 @@ export default function Services() {
             <span className="text-teal-600">
               {t("servicesSection.titleHighlight")}
             </span>{" "}
-            <span className="block sm:inline">{t("servicesSection.titleSuffix")}</span>
+            <span className="block sm:inline">
+              {t("servicesSection.titleSuffix")}
+            </span>
           </h2>
           <p className="text-slate-600 max-w-2xl mx-auto text-sm sm:text-base md:text-lg px-4">
             {t("servicesSection.description")}
           </p>
         </motion.div>
 
-        <div className="
+        <div
+          className="
           grid 
           grid-cols-1 
           sm:grid-cols-2 
@@ -50,7 +62,8 @@ export default function Services() {
           xl:grid-cols-4 
           2xl:grid-cols-5
           gap-4 sm:gap-5 md:gap-6
-        ">
+        "
+        >
           {sliceCategoriesData.map((category, idx) => (
             <motion.div
               key={category.id}
@@ -69,7 +82,7 @@ export default function Services() {
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                 />
                 <div className="absolute inset-0 bg-linear-to-t from-black/40 via-black/0 to-transparent" />
-                
+
                 <div className="absolute top-3 left-3 sm:top-4 sm:left-4 bg-white/90 backdrop-blur-sm rounded-lg p-1.5 sm:p-2 shadow-sm">
                   <category.icon className="w-4 h-4 sm:w-5 sm:h-5 text-teal-600" />
                 </div>
@@ -79,7 +92,7 @@ export default function Services() {
                 <h3 className="font-bold text-lg sm:text-xl text-slate-800 mb-1 sm:mb-2 line-clamp-1">
                   {category.name}
                 </h3>
-                
+
                 <p className="text-slate-500 text-xs sm:text-sm mb-3 sm:mb-4 line-clamp-2">
                   {category.description}
                 </p>
@@ -137,9 +150,14 @@ export default function Services() {
                       </div>
                     </motion.div>
                   )}
+                  <button onClick={() => handleView(category.id!)}  className="text-teal-600 text-xs sm:text-sm font-semibold inline-flex items-center justify-center gap-1 group-hover:gap-2 transition-all mt-auto">
+            {t("projectsSection.buttonExplore")}
+            <ArrowRight className="w-3 h-3 sm:w-4 sm:h-4" />
+          </button>
               </div>
             </motion.div>
           ))}
+        
         </div>
 
         {path != "/services" && (
@@ -167,6 +185,7 @@ export default function Services() {
             </button>
           </motion.div>
         )}
+        
       </div>
     </section>
   );
