@@ -117,9 +117,9 @@ export default function Services({ onView }: card) {
                       className="text-[10px] sm:text-xs text-teal-600 hover:text-teal-700 font-medium"
                     >
                       {expandedId === category.id
-                        ? t("servicesSection.showLess") || "Minder"
+                        ? t("servicesSection.showLess")
                         : `+${category.subServices.length - 3} ${
-                            t("servicesSection.more") || "meer"
+                            t("servicesSection.showMore") 
                           }`}
                     </button>
                   )}
