@@ -210,8 +210,8 @@
     "description": "We provide the best building materials and finishes with high quality and competitive prices.",
     "quickLinks": "Quick Links",
     "home": "Home",
-    "products": "Products",
-    "features": "Features",
+    "services": "Our Services",
+    "projects": "Our Projects",
     "aboutUs": "About Us",
     "contactUs": "Contact Us",
     "newsletter": "Newsletter",
@@ -221,7 +221,9 @@
     "address": "Address",
     "allRightsReserved": "All rights reserved.",
     "phone": "Phone",
-    "email": "Email"
+    "email": "Email",
+    "contact": "Contact Us"
+
   },
   "projectsHero": {
     "badge": "Our Projects",

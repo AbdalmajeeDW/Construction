@@ -18,9 +18,10 @@ export default function Footer() {
 
   const quickLinks = [
     { href: "/", label: "footer.home", isHash: false },
-    { href: "#categories", label: "footer.products", isHash: true },
-    { href: "#featured", label: "footer.features", isHash: true },
-    { href: "#about", label: "footer.aboutUs", isHash: true },
+    { href: "/services", label: "footer.services", isHash: true },
+    { href: "/projects", label: "footer.projects", isHash: true },
+    { href: "/about", label: "footer.aboutUs", isHash: true },
+    { href: "/contact", label: "footer.contact", isHash: true },
   ];
 
   const handleHashClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {

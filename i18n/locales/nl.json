@@ -213,8 +213,8 @@
     "description": "Wij leveren de beste bouwmaterialen en afwerkingen van hoge kwaliteit tegen concurrerende prijzen.",
     "quickLinks": "Snelle Links",
     "home": "Thuis",
-    "products": "Producten",
-    "features": "Kenmerken",
+    "services": "Onze Diensten",
+    "projects": "Onze Projecten",
     "aboutUs": "Over Ons",
     "contactUs": "Contacteer Ons",
     "newsletter": "Nieuwsbrief",
@@ -224,7 +224,8 @@
     "address": "Adres",
     "allRightsReserved": "Alle rechten voorbehouden.",
     "phone": "Telefoon",
-    "email": "E-mail"
+    "email": "E-mail",
+    "contact": "Contacteer Ons"
   },
   "projectsHero": {
     "badge": "Onze Projecten",
