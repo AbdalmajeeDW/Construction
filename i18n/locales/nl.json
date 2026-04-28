@@ -8,10 +8,9 @@
   },
   "heroSection": {
     "badge": "🏗️ Het beste voor uw comfort",
-    "title1": "Wij Bouwen",
-    "titleHighlight": "Uw Dromen",
-    "title2": "Met De Beste Materialen",
-    "description": "Wij bieden de beste soorten tegels, keramiek en moderne bouwmaterialen met hoge kwaliteit en concurrerende prijzen. Wij leveren in alle regio's van het koninkrijk.",
+    "title1": "Wij realiseren uw bouw- en renovatieproject",
+    "titleHighlight": "van A tot Z",
+    "description": "Betrouwbare aannemer voor renovatie, afwerking en installatiewerkzaamheden. Kwaliteit, vakmanschap en duidelijke afspraken staan bij ons centraal.",
     "btnQuote": "Offerte Aanvragen",
     "btnGallery": "Productengalerij",
     "stat1": "Gegarandeerde Kwaliteit",
@@ -33,13 +32,13 @@
     "lastName": "Achternaam",
     "email": "E-mailadres",
     "phone": "Telefoonnummer",
-    "location": "Gebied / Stad",
+    "location": "Stad",
     "houseNumber": "Huisnummer",
     "space": "Ruimte (Vierkante Meters)",
     "message": "Uw Bericht",
     "messagePlaceholder": "Schrijf uw bericht hier...",
     "images": "Afbeeldingen",
-    "imagesHint": "Minimaal 2 afbeeldingen vereist - Maximaal 5",
+    "imagesHint": "Minimaal 2 afbeeldingen vereist",
     "uploadText": "Klik om afbeeldingen te uploaden",
     "uploadHint": "PNG, JPG, GIF - Maximaal 5MB per afbeelding",
     "submit": "Verzenden",
@@ -52,7 +51,7 @@
   },
   "projectsSection": {
     "title": "Onze",
-    "titleHighlight": "Meestgevraagde Projecten",
+    "titleHighlight": "Projecten",
     "description": "Een exclusieve selectie van het beste vakmanschap in bouw- en afwerkingsprojecten.",
 
     "buttonViewAll": "Bekijk alle projecten",
@@ -105,7 +104,7 @@
 
     "experience": {
       "title": "Meer dan ",
-      "titleHighlight": "20 jaar ervaring",
+      "titleHighlight": "5 jaar ervaring",
       "description": "Wij leveren de beste bouw- en afwerkingsmaterialen van hoge kwaliteit tegen concurrerende prijzen in heel Nederland.",
       "features1": "Levering in alle regio's van Nederland",
       "features2": "Gratis vrijblijvende offerte",
@@ -131,8 +130,8 @@
   "servicesCard": {
     "categories": {
       "roughConstruction": {
-        "name": "Ruwbouw & Constructie",
-        "description": "Alle bouwwerkzaamheden voor de ruwbouw van uw project.",
+        "name": "Ruwbouw en Constructiewerk",
+        "description": "Alle werkzaamheden voor de structurele opbouw van uw project.",
         "subServices": {
           "demolition": "Sloopwerk",
           "preparatory": "Voorbereidende werkzaamheden",
@@ -144,21 +143,21 @@
         }
       },
       "electrical": {
-        "name": "Elektra",
-        "description": "Professionele elektrische installaties en bedrading.",
+        "name": "Elektrische Installaties",
+        "description": "Aanleg en onderhoud van veilige en professionele elektrische systemen.",
         "subServices": {
           "electrical": "Elektra werkzaamheden"
         }
       },
       "plumbing": {
-        "name": "Loodgieterswerk",
+        "name": "Loodgieterswerk en Installaties",
         "description": "Waterleidingen, sanitair en verwarmingsinstallaties.",
         "subServices": {
           "plumbing": "Loodgieterswerk"
         }
       },
       "insulation": {
-        "name": "Isolatiewerk",
+        "name": "Isolatiewerk (warmte-, geluids- en vochtisolatie)",
         "description": "Warmte-, geluids- en vochtisolatie voor uw woning.",
         "subServices": {
           "insulation": "Isolatiewerk"
@@ -204,9 +203,8 @@
   "servicesSection": {
     "badge": "🏗️ Onze Diensten",
     "title": "Onze",
-    "titleHighlight": "Uitstekende",
-    "titleSuffix": "Diensten",
-    "description": "Wij bieden u de beste materialen voor bouw en afwerking.",
+    "titleHighlight": "Diensten",
+    "description": "Complete woningrenovatie in Tilburg.",
     "showLess": "Minder",
     "showMore": "meer",
     "viewAll": "Bekijk alle diensten"
@@ -273,7 +271,7 @@
     "email": "E-mailadres",
     "phone": "Telefoonnummer",
     "addressInfo": "Adresgegevens",
-    "location": "Gebied / Stad",
+    "location": "Stad",
     "houseNumber": "Huisnummer",
     "space": "Ruimte",
     "quickActions": "Snelle acties",

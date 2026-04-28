@@ -44,9 +44,6 @@ export default function Services({ onView }: card) {
             <span className="text-teal-600">
               {t("servicesSection.titleHighlight")}
             </span>{" "}
-            <span className="block sm:inline">
-              {t("servicesSection.titleSuffix")}
-            </span>
           </h2>
           <p className="text-slate-600 max-w-2xl mx-auto text-sm sm:text-base md:text-lg px-4">
             {t("servicesSection.description")}

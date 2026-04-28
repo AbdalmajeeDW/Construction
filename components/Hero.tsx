@@ -26,7 +26,6 @@ interface HeroProps {
   badgeKey?: string;
   titlePrefixKey?: string;
   titleHighlightKey?: string;
-  titleSuffixKey?: string;
   descriptionKey?: string;
   statsKeys?: string[];
   floatingLabelKey?: string;
@@ -39,7 +38,6 @@ export default function Hero({
   badgeKey = "heroSection.badge",
   titlePrefixKey = "heroSection.title1",
   titleHighlightKey = "heroSection.titleHighlight",
-  titleSuffixKey = "heroSection.title2",
   descriptionKey = "heroSection.description",
   statsKeys = ["heroSection.stat1", "heroSection.stat2", "heroSection.stat3"],
   floatingLabelKey = "heroSection.floatingLabel",
@@ -121,7 +119,7 @@ export default function Hero({
                 <span className="text-transparent bg-clip-text bg-linear-to-r from-teal-500 to-teal-700 px-1">
                   {t(titleHighlightKey)}
                 </span>
-                <span> {t(titleSuffixKey)}</span>
+              
               </motion.h1>
 
               <motion.p

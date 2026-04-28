@@ -12,7 +12,7 @@ export default function Footer() {
 
   const contactInfo = {
     phone: "+31 68 5218315",
-    email: "info@",
+    email: "info@rivoaannemerbedrijf.nl",
     address: "Doctor Struyckenstraat 179A, 4812 BC Breda, Netherlands",
   };
 
@@ -139,26 +139,7 @@ export default function Footer() {
           </motion.div>
         </div>
 
-        {/* <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ duration: 0.5 }}
-          className="border-t border-slate-200 pt-5 sm:pt-6 md:pt-8"
-        >
-          <div className="flex flex-col sm:flex-row justify-between items-center gap-3 sm:gap-4">
-            <p className="text-slate-500 text-[11px] sm:text-xs md:text-sm text-center sm:text-left">
-              © {new Date().getFullYear()} Benaa.Sam. {t("footer.allRightsReserved")}
-            </p>
-            <div className="flex gap-4 sm:gap-6 text-[11px] sm:text-xs">
-              <a href="/privacy" className="text-slate-500 hover:text-teal-600 transition-colors">
-                {t("footer.privacyPolicy")}
-              </a>
-              <a href="/terms" className="text-slate-500 hover:text-teal-600 transition-colors">
-                {t("footer.termsOfService")}
-              </a>
-            </div>
-          </div>
-        </motion.div> */}
+ 
       </div>
     </footer>
   );

@@ -8,12 +8,11 @@
   },
   "heroSection": {
     "badge": "🏗️ The best for your comfort",
-    "title1": "We Build",
+    "title1": "We realize your construction and renovation project ",
      "cta": "Services",
     "secondary": "Projects",
-    "titleHighlight": "Your Dreams",
-    "title2": "With The Best Materials",
-    "description": "We provide the best types of tiles, ceramics, and modern building materials with high quality and competitive prices. We deliver to all regions of the Kingdom.",
+    "titleHighlight": "from A to Z",
+    "description": "Reliable contractor for renovation, finishing and installation work. Quality, craftsmanship and clear agreements are central to us.",
     "btnQuote": "Get a Quote",
     "btnGallery": "Products Gallery",
     "stat1": "Quality Guaranteed",
@@ -33,13 +32,13 @@
     "lastName": "Last Name",
     "email": "Email Address",
     "phone": "Phone Number",
-    "location": "Area / City",
+    "location": "City",
     "houseNumber": "House Number",
     "space": "Space (Square Meters)",
     "message": "Your Message",
     "messagePlaceholder": "Write your message here...",
     "images": "Images",
-    "imagesHint": "Minimum 2 images required - Maximum 5",
+    "imagesHint": "Minimum 2 images required",
     "uploadText": "Click to upload images",
     "uploadHint": "PNG, JPG, GIF - Max 5MB per image",
     "submit": "Send",
@@ -52,7 +51,7 @@
   },
   "projectsSection": {
     "title": "Our",
-    "titleHighlight": "Most Requested Projects",
+    "titleHighlight": "Projects",
     "description": "An exclusive selection of the best craftsmanship in construction and finishing projects",
 
     "buttonViewAll": "View all projects",
@@ -102,7 +101,7 @@
     },
     "experience": {
       "title": "More than ",
-      "titleHighlight": "20 years of experience",
+      "titleHighlight": "5 years of experience",
       "description": "We deliver the best high-quality construction and finishing materials at competitive prices throughout the Netherlands.",
       "features1": "Delivery in all regions of the Netherlands",
       "features2": "Free no-obligation quote",
@@ -129,7 +128,7 @@
     "categories": {
       "roughConstruction": {
         "name": "Rough Construction & Structure",
-        "description": "All structural works for the rough construction of your project.",
+        "description": "All work for the structural construction of your project.",
         "subServices": {
           "demolition": "Demolition Works",
           "preparatory": "Preparatory Works",
@@ -140,21 +139,21 @@
         }
       },
       "electrical": {
-        "name": "Electrical Works",
-        "description": "Professional electrical installations and wiring.",
+        "name": "Electrical Installations",
+        "description": "Installation and maintenance of safe and professional electrical systems",
         "subServices": {
           "electrical": "Electrical Works"
         }
       },
       "plumbing": {
-        "name": "Plumbing",
+        "name": "Plumbing and Installations",
         "description": "Water pipes, sanitary ware and heating installations.",
         "subServices": {
           "plumbing": "Plumbing Works"
         }
       },
       "insulation": {
-        "name": "Insulation Works",
+        "name": "Insulation work (heat, sound and moisture insulation)",
         "description": "Heat, sound and moisture insulation for your home.",
         "subServices": {
           "insulation": "Insulation Works"
@@ -200,9 +199,9 @@
   "servicesSection": {
     "badge": "🏗️ Our Services",
     "title": "Our",
-    "titleHighlight": "Excellent",
-    "titleSuffix": "Services",
-    "description": "We offer you the best materials for construction and finishing.",
+    "titleHighlight": "Services",
+  
+    "description": "Complete home renovation in Tilburg.",
     "showLess": "Show less",
     "showMore": "more",
     "viewAll": "View all services"
@@ -267,7 +266,7 @@
     "email": "Email Address",
     "phone": "Phone Number",
     "addressInfo": "Address Details",
-    "location": "Area / City",
+    "location": "City",
     "houseNumber": "House Number",
     "space": "Space",
     "quickActions": "Quick Actions",
