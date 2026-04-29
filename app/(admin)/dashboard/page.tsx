@@ -12,6 +12,7 @@ import { Message, Stats } from "@/types";
 import { useTranslation } from "react-i18next";
 import api from "@/api";
 import { API_ENDPOINTS } from "@/endPoint";
+import {  getRoute } from "@/helper/getFilter";
 
 const useMessages = () => {
   const [messages, setMessages] = useState<Message[]>([]);
@@ -153,9 +154,14 @@ export default function AdminDashboard() {
 
       <div className=" mx-auto px-4 sm:px-6 md:px-8 py-4 sm:py-6 md:py-8">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 md:gap-6 mb-6 sm:mb-8">
-          {dataStats.map((card, idx) => (
-            <StatCard key={card.title} {...card} />
-          ))}
+       {dataStats.map((card) => (
+  <StatCard
+    key={card.id}
+    {...card}
+     onClick={() => router.push(getRoute(card.id))}
+
+  />
+))}
         </div>
         <QuickOverview messages={messages} t={t} />
 

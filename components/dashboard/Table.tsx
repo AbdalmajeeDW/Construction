@@ -54,7 +54,7 @@ export default function Table({
         </thead>
         <tbody>
           {loading ? (
-            <tr>
+            <tr >
               <td colSpan={6} className="text-center py-16">
                 <div className="inline-flex flex-col items-center gap-3">
                   <Loader2 className="w-10 h-10 text-teal-600 animate-spin" />
@@ -89,7 +89,8 @@ export default function Table({
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: idx * 0.05 }}
-                  className="border-b border-gray-50 hover:bg-linear-to-r hover:from-teal-50/30 hover:to-transparent transition-all duration-300 group"
+                  className="border-b cursor-pointer border-gray-50 hover:bg-linear-to-r hover:from-teal-50/30 hover:to-transparent transition-all duration-300 group"
+                  onClick={() => router.push(`singleMessage/${msg.id}`)}
                 >
                   <td className="px-6 py-4">
                     {!msg.isRead ? (

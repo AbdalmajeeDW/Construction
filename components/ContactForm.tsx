@@ -86,7 +86,7 @@ export default function ContactForm() {
     e.preventDefault();
 
     if (images.length < 2) {
-      setErrorMsg(t("errorImages"));
+      setErrorMsg(t("contactForm.errorImages"));
       setStatus("error");
       setTimeout(() => setStatus("idle"), 3000);
       return;

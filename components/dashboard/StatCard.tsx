@@ -1,21 +1,22 @@
 import { StatCardAdmin } from "@/types";
-import React from "react";
 import { motion } from "framer-motion";
-import { ArrowUpRight } from "lucide-react";
 
 export default function StatCard({
+  id,
   title,
   value,
   icon: Icon,
   linear,
+  onClick
 }: StatCardAdmin) {
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 30 }}
-      animate={{ opacity: 1, y: 0 }}
-      whileHover={{ y: -5 }}
-      className="group relative bg-white rounded-xl sm:rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden"
-    >
+<motion.div
+  initial={{ opacity: 0, y: 30 }}
+  animate={{ opacity: 1, y: 0 }}
+  whileHover={{ y: -5 }}
+  className="group relative cursor-pointer bg-white rounded-xl sm:rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden"
+  onClick={onClick}
+>
       <div className="relative p-4 sm:p-6">
         <div className="flex items-center justify-between mb-3 sm:mb-4">
           <div

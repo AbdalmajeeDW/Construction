@@ -22,10 +22,12 @@ export interface Stats {
 }
 
 export interface StatCardAdmin {
+  id:number;
   title: string;
   value: number;
   icon: React.ComponentType<{ className?: string }>;
   linear: string;
+  onClick?: () => void;
 }
 
 export interface Activity {

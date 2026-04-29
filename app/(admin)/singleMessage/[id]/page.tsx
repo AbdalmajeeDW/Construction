@@ -37,7 +37,7 @@ export default function MessageDetail() {
   const [messages, setMessages] = useState<Message[]>([]);
 
   const API = "http://localhost:3000/contact";
-  const API_BASE = "http://localhost:3000";
+  const API_BASE = "https://rivoaannemerbedrijf.nl/api/";
 
   useEffect(() => {
     const fetchMessage = async () => {

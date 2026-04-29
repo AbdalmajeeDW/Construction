@@ -11,30 +11,37 @@ import ConfirmDialog from "@/components/dashboard/ConfirmDialog";
 import { usePathname, useRouter } from "next/navigation";
 import api from "@/api";
 import { API_ENDPOINTS } from "@/endPoint";
-
+import { useSearchParams } from "next/navigation";
 export default function AdminMessages() {
   const [messages, setMessages] = useState<Message[]>([]);
   const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState("");
-  const [filter, setFilter] = useState<"all" | "read" | "unread">("all");
+  const [filter, setFilter] = useState<"all" | "read" | "unread">("unread");
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 10;
   const { t } = useTranslation();
   const [dialogOpen, setDialogOpen] = useState(false);
   const [messageToDelete, setMessageToDelete] = useState<string | null>(null);
   const router = useRouter();
+  const searchParams = useSearchParams();
 
   useEffect(() => {
     fetchMessages();
   }, []);
+  useEffect(() => {
+    const f = searchParams.get("filter");
 
+    if (f === "read" || f === "unread" || f === "all") {
+      setFilter(f);
+    }
+  }, [searchParams]);
 
   const fetchMessages = async () => {
     setLoading(true);
     try {
       const response = await api.get(API_ENDPOINTS.CONTACT.GET_ALL);
       setMessages(Array.isArray(response.data) ? response.data : []);
-    
+
     } finally {
       setLoading(false);
     }
@@ -192,11 +199,10 @@ export default function AdminMessages() {
                   setFilter("all");
                   setCurrentPage(1);
                 }}
-                className={`px-5 py-2.5  cursor-pointer rounded-xl font-medium transition-all duration-300 ${
-                  filter === "all"
-                    ? "bg-linear-to-r from-teal-600 to-teal-500 text-white shadow-md"
-                    : "bg-gray-100 text-gray-600 hover:bg-gray-200"
-                }`}
+                className={`px-5 py-2.5  cursor-pointer rounded-xl font-medium transition-all duration-300 ${filter === "all"
+                  ? "bg-linear-to-r from-teal-600 to-teal-500 text-white shadow-md"
+                  : "bg-gray-100 text-gray-600 hover:bg-gray-200"
+                  }`}
               >
                 {t("messagePage.all")}
               </button>
@@ -205,11 +211,10 @@ export default function AdminMessages() {
                   setFilter("unread");
                   setCurrentPage(1);
                 }}
-                className={`px-5 py-2.5 cursor-pointer rounded-xl font-medium transition-all duration-300 ${
-                  filter === "unread"
-                    ? "bg-linear-to-r  from-amber-600 to-orange-500 text-white shadow-md"
-                    : "bg-gray-100  text-gray-600 hover:bg-gray-200"
-                }`}
+                className={`px-5 py-2.5 cursor-pointer rounded-xl font-medium transition-all duration-300 ${filter === "unread"
+                  ? "bg-linear-to-r  from-amber-600 to-orange-500 text-white shadow-md"
+                  : "bg-gray-100  text-gray-600 hover:bg-gray-200"
+                  }`}
               >
                 {t("messagePage.unread")}
               </button>
@@ -218,11 +223,10 @@ export default function AdminMessages() {
                   setFilter("read");
                   setCurrentPage(1);
                 }}
-                className={`px-5 py-2.5 cursor-pointer rounded-xl font-medium transition-all duration-300 ${
-                  filter === "read"
-                    ? "bg-linear-to-r from-emerald-600 to-teal-500 text-white shadow-md"
-                    : "bg-gray-100 text-gray-600 hover:bg-gray-200"
-                }`}
+                className={`px-5 py-2.5 cursor-pointer rounded-xl font-medium transition-all duration-300 ${filter === "read"
+                  ? "bg-linear-to-r from-emerald-600 to-teal-500 text-white shadow-md"
+                  : "bg-gray-100 text-gray-600 hover:bg-gray-200"
+                  }`}
               >
                 {t("messagePage.read")}
               </button>
