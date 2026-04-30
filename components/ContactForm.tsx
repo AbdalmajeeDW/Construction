@@ -70,8 +70,8 @@ export default function ContactForm() {
 
   const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
-
-    setFormData((p) => ({ ...p, [name]: value }));
+    
+    setFormData((prev) => ({ ...prev, [name]: value }));
 
     if (errors[name as keyof FormErrors]) {
       setErrors((prev) => ({ ...prev, [name]: undefined }));
@@ -102,9 +102,9 @@ export default function ContactForm() {
       return;
     }
 
-    setImages((p) => [...p, ...validFiles]);
-    setPreviews((p) => [
-      ...p,
+    setImages((prev) => [...prev, ...validFiles]);
+    setPreviews((prev) => [
+      ...prev,
       ...validFiles.map((f) => URL.createObjectURL(f)),
     ]);
 
@@ -115,8 +115,8 @@ export default function ContactForm() {
 
   const removeImage = (i: number) => {
     URL.revokeObjectURL(previews[i]);
-    setImages((p) => p.filter((_, idx) => idx !== i));
-    setPreviews((p) => p.filter((_, idx) => idx !== i));
+    setImages((prev) => prev.filter((_, idx) => idx !== i));
+    setPreviews((prev) => prev.filter((_, idx) => idx !== i));
   };
 
   const resetForm = () => {
@@ -140,10 +140,10 @@ export default function ContactForm() {
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
 
-    const { isValid, errors } = validateFormContact(formData, t, images);
+    const { isValid, errors: validationErrors } = validateFormContact(formData, t, images);
 
     if (!isValid) {
-      setErrors(errors);
+      setErrors(validationErrors);
       setErrorMsg(t("validation.formErrors"));
       setStatus("error");
       return;
@@ -176,8 +176,8 @@ export default function ContactForm() {
       }
     } catch (err) {
       console.error("Submit error:", err);
-      // setErrorMsg(t("contactForm.validation.submitError"));
-      // setStatus("error");
+      setErrorMsg(t("validation.submitError"));
+      setStatus("error");
     }
   };
 
@@ -206,39 +206,105 @@ export default function ContactForm() {
           noValidate
         >
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mb-4">
-            <InputField label="firstName" icon={<User size={16} />} errors={errors} errorName={"firstName"} formData={formData} t={t} onChange={handleChange} />
-            <div>
-              <InputField label="lastName" icon={<User size={16} />} errorName={"lastName"} errors={errors} formData={formData} t={t} onChange={handleChange} />
-            </div>
-            <div>
-              <InputField label="email" icon={<Mail size={16} />} errorName={"email"} errors={errors} formData={formData} t={t} onChange={handleChange} />
-            </div>
+            <InputField 
+              label="firstName" 
+              icon={<User size={16} />} 
+              errorName="firstName" 
+              errors={errors} 
+              formData={formData} 
+              t={t} 
+              onChange={handleChange} 
+            />
+            <InputField 
+              label="lastName" 
+              icon={<User size={16} />} 
+              errorName="lastName" 
+              errors={errors} 
+              formData={formData} 
+              t={t} 
+              onChange={handleChange} 
+            />
+            <InputField 
+              label="email" 
+              icon={<Mail size={16} />} 
+              errorName="email" 
+              errors={errors} 
+              formData={formData} 
+              t={t} 
+              onChange={handleChange} 
+            />
           </div>
+
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mb-4">
-            <div>
-              <InputField label="phone" icon={<Phone size={16} />} errorName={"phone"} errors={errors} formData={formData} t={t} onChange={handleChange} />
-            </div>
-            <div>
-              <InputField label="postcode" icon={<MapPin size={16} />} errorName={"postcode"} errors={errors} formData={formData} t={t} onChange={handleChange} />
-            </div>
-            <div>
-              <InputField label="plaats" icon={<MapPin size={16} />} errorName={"plaats"} errors={errors} formData={formData} t={t} onChange={handleChange} />
-            </div>
+            <InputField 
+              label="phone" 
+              icon={<Phone size={16} />} 
+              errorName="phone" 
+              errors={errors} 
+              formData={formData} 
+              t={t} 
+              onChange={handleChange} 
+            />
+            <InputField 
+              label="postcode" 
+              icon={<MapPin size={16} />} 
+              errorName="postcode" 
+              errors={errors} 
+              formData={formData} 
+              t={t} 
+              onChange={handleChange} 
+            />
+            <InputField 
+              label="plaats" 
+              icon={<MapPin size={16} />} 
+              errorName="plaats" 
+              errors={errors} 
+              formData={formData} 
+              t={t} 
+              onChange={handleChange} 
+            />
           </div>
+
           <div className="grid grid-cols-1 sm:grid-cols-12 gap-4 mb-4">
             <div className="sm:col-span-6">
-              <InputField label="straat" icon={<MapPin size={16} />} errorName={"straat"} errors={errors} formData={formData} t={t} onChange={handleChange} />
+              <InputField 
+                label="straat" 
+                icon={<MapPin size={16} />} 
+                errorName="straat" 
+                errors={errors} 
+                formData={formData} 
+                t={t} 
+                onChange={handleChange} 
+              />
             </div>
             <div className="sm:col-span-2">
-              <InputField label="nr" icon={<Hash size={16} />} errorName={"nr"} errors={errors} formData={formData} t={t} onChange={handleChange} />
+              <InputField 
+                label="nr" 
+                icon={<Hash size={16} />} 
+                errorName="nr" 
+                errors={errors} 
+                formData={formData} 
+                t={t} 
+                onChange={handleChange} 
+              />
             </div>
             <div className="sm:col-span-4">
-              <InputField label="space" icon={<Ruler size={16} />} errorName={"space"} errors={errors} formData={formData} t={t} onChange={handleChange} />
+              <InputField 
+                label="space" 
+                icon={<Ruler size={16} />} 
+                errorName="space" 
+                errors={errors} 
+                formData={formData} 
+                t={t} 
+                onChange={handleChange} 
+              />
             </div>
           </div>
 
           <div className="mb-4">
-            <label className={labelClass}><MessageSquare size={16} /> {t("contactForm.message")} *</label>
+            <label className={labelClass}>
+              <MessageSquare size={16} /> {t("contactForm.message")} *
+            </label>
             <textarea
               name="message"
               rows={4}
@@ -248,6 +314,7 @@ export default function ContactForm() {
             />
             {errors.message && <p className="text-red-500 text-xs mt-1">{errors.message}</p>}
           </div>
+
           <div
             onClick={() => fileInputRef.current?.click()}
             className="border border-dashed border-teal-600 p-4 text-teal-600 rounded-lg text-center cursor-pointer mb-4 hover:bg-teal-50 transition"
@@ -273,7 +340,7 @@ export default function ContactForm() {
                   <button
                     type="button"
                     onClick={() => removeImage(i)}
-                    className="absolute -top-2 -right-2 bg-red-500 text-white rounded-full p-1  transition"
+                    className="absolute -top-2 -right-2 bg-red-500 text-white rounded-full p-1 transition"
                   >
                     <X size={14} />
                   </button>
@@ -281,6 +348,7 @@ export default function ContactForm() {
               ))}
             </div>
           )}
+
           <button
             type="submit"
             disabled={status === "loading"}
@@ -297,6 +365,7 @@ export default function ContactForm() {
               </>
             )}
           </button>
+
           {status === "success" && (
             <p className="text-green-600 mt-2 text-center font-semibold">
               ✓ {t("contactForm.success")}
