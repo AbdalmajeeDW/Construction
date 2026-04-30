@@ -1,17 +1,14 @@
 "use client";
 
-import { useState, useRef } from "react";
+import { useState, useRef, FormEvent, ChangeEvent } from "react";
 import { motion, useInView } from "framer-motion";
 import {
   Send,
-  CheckCircle,
-  AlertCircle,
   User,
   Mail,
   MessageSquare,
   MapPin,
   Hash,
-  ImageIcon,
   X,
   Upload,
   Phone,
@@ -20,144 +17,185 @@ import {
 import { useTranslation } from "react-i18next";
 import api from "@/api";
 import { API_ENDPOINTS } from "@/endPoint";
+import { validateFormContact } from "@/lib/validation";
+
+interface FormData {
+  firstName: string;
+  lastName: string;
+  email: string;
+  phone: string;
+  postcode: string;
+  nr: string;
+  straat: string;
+  plaats: string;
+  space: string;
+  message: string;
+}
+
+interface FormErrors {
+  firstName?: string;
+  lastName?: string;
+  email?: string;
+  phone?: string;
+  postcode?: string;
+  nr?: string;
+  straat?: string;
+  plaats?: string;
+  space?: string;
+  message?: string;
+  images?: string;
+}
 
 export default function ContactForm() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, amount: 0.2 });
   const { t } = useTranslation();
 
-  const [formData, setFormData] = useState({
+  const inputClass =
+    "text-black/75 placeholder:text-gray-400 w-full border border-gray-400 px-4 py-2 rounded-lg focus:ring-2 focus:ring-teal-400 outline-none";
+  const inputErrorClass =
+    "text-black/75 placeholder:text-gray-400 w-full border border-red-500 px-4 py-2 rounded-lg focus:ring-2 focus:ring-red-400 outline-none";
+
+  const labelClass =
+    "flex items-center gap-2 text-sm font-semibold text-gray-600 mb-1";
+
+  const [formData, setFormData] = useState<FormData>({
     firstName: "",
     lastName: "",
     email: "",
     phone: "",
-    location: "",
-    houseNumber: "",
+    postcode: "",
+    nr: "",
+    straat: "",
+    plaats: "",
     space: "",
     message: "",
   });
+
+  const [errors, setErrors] = useState<FormErrors>({});
   const [images, setImages] = useState<File[]>([]);
   const [previews, setPreviews] = useState<string[]>([]);
-  const [status, setStatus] = useState<
-    "idle" | "loading" | "success" | "error"
-  >("idle");
+  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [errorMsg, setErrorMsg] = useState("");
+
   const fileInputRef = useRef<HTMLInputElement>(null);
 
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
-  ) => {
+  const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
-    if (name === "space") {
-      if (/^\d*\.?\d*$/.test(value)) {
-        setFormData({ ...formData, [name]: value });
-      }
-    } else {
-      setFormData({ ...formData, [name]: value });
+
+    setFormData((p) => ({ ...p, [name]: value }));
+    
+    if (errors[name as keyof FormErrors]) {
+      setErrors((prev) => ({ ...prev, [name]: undefined }));
     }
   };
 
-  const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleImageUpload = (e: ChangeEvent<HTMLInputElement>) => {
     const files = Array.from(e.target.files || []);
 
-    if (images.length + files.length > 5) {
-      setErrorMsg(t("errorMaxImages"));
-      setStatus("error");
-      setTimeout(() => setStatus("idle"), 3000);
+    if (files.length === 0) return;
+
+    const validFiles: File[] = [];
+    const invalidFiles: string[] = [];
+    
+    for (const file of files) {
+      if (!file.type.startsWith("image/")) {
+        invalidFiles.push(`${file.name} (${t("validation.imagesType")})`);
+      } else {
+        validFiles.push(file);
+      }
+    }
+    
+    if (invalidFiles.length > 0) {
+      setErrors((prev) => ({ 
+        ...prev, 
+        images: t("validation.imagesInvalid", { files: invalidFiles.join(", ") })
+      }));
       return;
     }
 
-    const validFiles = files.filter((f) => f.size <= 5 * 1024 * 1024);
-    setImages([...images, ...validFiles]);
-    setPreviews([
-      ...previews,
+    setImages((p) => [...p, ...validFiles]);
+    setPreviews((p) => [
+      ...p,
       ...validFiles.map((f) => URL.createObjectURL(f)),
     ]);
+    
+    if (errors.images) {
+      setErrors((prev) => ({ ...prev, images: undefined }));
+    }
   };
 
-  const removeImage = (index: number) => {
-    URL.revokeObjectURL(previews[index]);
-    setImages(images.filter((_, i) => i !== index));
-    setPreviews(previews.filter((_, i) => i !== index));
+  const removeImage = (i: number) => {
+    URL.revokeObjectURL(previews[i]);
+    setImages((p) => p.filter((_, idx) => idx !== i));
+    setPreviews((p) => p.filter((_, idx) => idx !== i));
   };
 
-  
-  const handleSubmit = async (e: React.FormEvent) => {
+  const resetForm = () => {
+    setFormData({
+      firstName: "",
+      lastName: "",
+      email: "",
+      phone: "",
+      postcode: "",
+      nr: "",
+      straat: "",
+      plaats: "",
+      space: "",
+      message: "",
+    });
+    setImages([]);
+    setPreviews([]);
+    setErrors({});
+  };
+
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
 
-    if (images.length < 2) {
-      setErrorMsg(t("contactForm.errorImages"));
+    const { isValid, errors } = validateFormContact(formData, t,images);
+    
+    if (!isValid) {
+      setErrors(errors);
+      setErrorMsg(t("validation.formErrors"));
       setStatus("error");
-      setTimeout(() => setStatus("idle"), 3000);
-      return;
-    }
-
-    const spaceNum = parseFloat(formData.space);
-    if (isNaN(spaceNum) || spaceNum <= 0) {
-      setErrorMsg(t("errorSpace"));
-      setStatus("error");
-      setTimeout(() => setStatus("idle"), 3000);
       return;
     }
 
     setStatus("loading");
+    setErrorMsg("");
 
     const fd = new FormData();
 
-    Object.entries(formData).forEach(([key, val]) => {
-      if (val) fd.append(key, val);
+    Object.entries(formData).forEach(([k, v]) => {
+      fd.append(k, v ?? "");
     });
-
-    fd.append("status", "pending");
-    fd.append("isRead", "false");
 
     images.forEach((img) => fd.append("images", img));
 
+    fd.append("isRead", "false");
+    fd.append("status", "pending");
+
     try {
-      const response = await api.post(API_ENDPOINTS.CONTACT.CREATE, fd, {});
+      const res = await api.post(API_ENDPOINTS.CONTACT.CREATE, fd);
 
-      if (response.status === 200 || response.status === 201) {
+      if (res.status === 200 || res.status === 201) {
         setStatus("success");
-
-        setFormData({
-          firstName: "",
-          lastName: "",
-          email: "",
-          phone: "",
-          location: "",
-          houseNumber: "",
-          space: "",
-          message: "",
-        });
-
-        previews.forEach((p) => URL.revokeObjectURL(p));
-        setImages([]);
-        setPreviews([]);
+        resetForm();
 
         setTimeout(() => setStatus("idle"), 3000);
       } else {
-        throw new Error("Failed to submit form");
+        throw new Error("Unexpected response status");
       }
-    } catch (error: any) {
-      console.error("Error submitting form:", error);
-
-      if (error.response) {
-        const errorMessage = error.response.data?.message || t("error");
-        setErrorMsg(errorMessage);
-      } else if (error.request) {
-        setErrorMsg(t("networkError"));
-      } else {
-        setErrorMsg(t("error"));
-      }
-
-      setStatus("error");
-      setTimeout(() => setStatus("idle"), 3000);
+    } catch (err) {
+      console.error("Submit error:", err);
+      // setErrorMsg(t("contactForm.validation.submitError"));
+      // setStatus("error");
     }
   };
 
   return (
-    <section ref={ref} className="py-16  bg-gray-50">
-      <div className="mx-auto px-4 sm:px-6 lg:px-8  ">
+    <section ref={ref} className="py-16 bg-gray-50">
+      <div className="mx-auto px-4 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
@@ -171,204 +209,191 @@ export default function ContactForm() {
           </h2>
           <p className="text-gray-500 mt-2">{t("contactForm.description")}</p>
         </motion.div>
-
+        
         <motion.form
+          onSubmit={handleSubmit}
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
-          onSubmit={handleSubmit}
-          className="bg-white rounded-2xl shadow-lg p-6"
+          className="bg-white p-4 sm:p-6 rounded-2xl shadow-lg"
+          noValidate
         >
-          <div className="grid md:grid-cols-3 gap-4 mb-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mb-4">
             <div>
-              <label className="flex items-center gap-2 text-sm font-semibold text-gray-500 mb-1">
-                <User size={16} /> {t("contactForm.firstName")}
-              </label>
-              <input
-                type="text"
-                name="firstName"
+              <label className={labelClass}><User size={16} /> {t("contactForm.firstName")} *</label>
+              <input 
+                name="firstName" 
                 value={formData.firstName}
+                className={errors.firstName ? inputErrorClass : inputClass} 
                 onChange={handleChange}
-                required
-                className="text-black/75 placeholder:text-gray-400
-                w-full shadow-xs px-4 py-2 border border-gray-500 rounded-lg focus:ring-2 focus:ring-teal-400 outline-none"
               />
+              {errors.firstName && <p className="text-red-500 text-xs mt-1">{errors.firstName}</p>}
             </div>
+
             <div>
-              <label className="flex items-center gap-2 text-sm font-semibold text-gray-500 mb-1">
-                <User size={16} /> {t("contactForm.lastName")}
-              </label>
-              <input
-                type="text"
-                name="lastName"
+              <label className={labelClass}><User size={16} /> {t("contactForm.lastName")} *</label>
+              <input 
+                name="lastName" 
                 value={formData.lastName}
+                className={errors.lastName ? inputErrorClass : inputClass} 
                 onChange={handleChange}
-                required
-                className="  text-black/75   placeholder:text-gray-400
-                w-full shadow-xs border-gray-500 px-4 py-2 border rounded-lg focus:ring-2 focus:ring-teal-400 outline-none"
               />
+              {errors.lastName && <p className="text-red-500 text-xs mt-1">{errors.lastName}</p>}
             </div>
+
             <div>
-              <label className="flex items-center gap-2 text-sm font-semibold text-gray-500 mb-1">
-                <Mail size={16} /> {t("contactForm.email")}
-              </label>
-              <input
+              <label className={labelClass}><Mail size={16} /> {t("contactForm.email")} *</label>
+              <input 
+                name="email" 
                 type="email"
-                name="email"
                 value={formData.email}
+                className={errors.email ? inputErrorClass : inputClass} 
                 onChange={handleChange}
-                required
-                className=" text-black/75                 placeholder:text-gray-400
-w-full px-4 border-gray-500 shadow-xs py-2 border rounded-lg focus:ring-2 focus:ring-teal-400 outline-none"
               />
+              {errors.email && <p className="text-red-500 text-xs mt-1">{errors.email}</p>}
             </div>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mb-4">
             <div>
-              <label className="flex items-center gap-2 text-sm font-semibold text-gray-500 mb-1">
-                <Phone size={16} /> {t("contactForm.phone")}
-              </label>
-              <input
+              <label className={labelClass}><Phone size={16} /> {t("contactForm.phone")} *</label>
+              <input 
+                name="phone" 
                 type="tel"
-                name="phone"
                 value={formData.phone}
+                className={errors.phone ? inputErrorClass : inputClass} 
                 onChange={handleChange}
-                required
-                className="   text-black/75 placeholder:text-gray-400
-                  w-full shadow-xs border-gray-500 px-4 py-2 border rounded-lg focus:ring-2 focus:ring-teal-400 outline-none"
               />
+              {errors.phone && <p className="text-red-500 text-xs mt-1">{errors.phone}</p>}
             </div>
+
             <div>
-              <label className="flex items-center gap-2 text-sm font-semibold text-gray-500 mb-1">
-                <MapPin size={16} /> {t("contactForm.location")}
-              </label>
-              <input
-                type="text"
-                name="location"
-                value={formData.location}
+              <label className={labelClass}><MapPin size={16} /> {t("contactForm.postcode")} *</label>
+              <input 
+                name="postcode" 
+                value={formData.postcode}
+                className={errors.postcode ? inputErrorClass : inputClass} 
                 onChange={handleChange}
-                required
-                className="  text-black/75                placeholder:text-gray-400
-w-full shadow-xs border-gray-500 px-4 py-2 border rounded-lg focus:ring-2 focus:ring-teal-400 outline-none"
               />
+              {errors.postcode && <p className="text-red-500 text-xs mt-1">{errors.postcode}</p>}
             </div>
+
             <div>
-              <label className="flex items-center gap-2 text-sm font-semibold text-gray-500 mb-1">
-                <Hash size={16} /> {t("contactForm.houseNumber")}
-              </label>
-              <input
-                type="text"
-                name="houseNumber"
-                value={formData.houseNumber}
+              <label className={labelClass}><MapPin size={16} /> {t("contactForm.plaats")} *</label>
+              <input 
+                name="plaats" 
+                value={formData.plaats}
+                className={errors.plaats ? inputErrorClass : inputClass} 
                 onChange={handleChange}
-                required
-                className="text-black/75  placeholder:text-gray-400
-                w-full shadow-xs border-gray-500 px-4 py-2 border rounded-lg focus:ring-2 focus:ring-teal-400 outline-none"
               />
+              {errors.plaats && <p className="text-red-500 text-xs mt-1">{errors.plaats}</p>}
             </div>
           </div>
-          <div className="mb-4">
-            <label className="flex items-center gap-2 text-sm font-semibold text-gray-500 mb-1">
-              <Ruler size={16} /> {t("contactForm.space")}
-            </label>
-            <input
-              type="number"
-              name="space"
-              value={formData.space}
-              onChange={handleChange}
-              required
-              className="text-black/75 placeholder:text-gray-400
-              w-full shadow-xs border-gray-500 px-4 py-2 border rounded-lg focus:ring-2 focus:ring-teal-400 outline-none"
-            />
+
+          <div className="grid grid-cols-1 sm:grid-cols-12 gap-4 mb-4">
+            <div className="sm:col-span-6">
+              <label className={labelClass}><MapPin size={16} /> {t("contactForm.straat")} *</label>
+              <input 
+                name="straat" 
+                value={formData.straat}
+                className={errors.straat ? inputErrorClass : inputClass} 
+                onChange={handleChange}
+              />
+              {errors.straat && <p className="text-red-500 text-xs mt-1">{errors.straat}</p>}
+            </div>
+
+            <div className="sm:col-span-2">
+              <label className={labelClass}><Hash size={16} /> {t("contactForm.nr")} *</label>
+              <input 
+                name="nr" 
+                value={formData.nr}
+                className={`${errors.nr ? inputErrorClass : inputClass} text-left sm:text-center`}
+                onChange={handleChange}
+            
+              />
+              {errors.nr && <p className="text-red-500 text-xs mt-1">{errors.nr}</p>}
+            </div>
+
+            <div className="sm:col-span-4">
+              <label className={labelClass}><Ruler size={16} /> {t("contactForm.space")} *</label>
+              <input 
+                name="space" 
+                value={formData.space}
+                className={errors.space ? inputErrorClass : inputClass} 
+                onChange={handleChange}
+                placeholder="m²"
+              />
+              {errors.space && <p className="text-red-500 text-xs mt-1">{errors.space}</p>}
+            </div>
           </div>
 
           <div className="mb-4">
-            <label className="flex items-center gap-2 text-sm font-semibold text-gray-500 mb-1">
-              <MessageSquare size={16} /> {t("contactForm.message")}
-            </label>
-            <textarea
-              name="message"
+            <label className={labelClass}><MessageSquare size={16} /> {t("contactForm.message")} *</label>
+            <textarea 
+              name="message" 
+              rows={4} 
               value={formData.message}
+              className={errors.message ? inputErrorClass : inputClass} 
               onChange={handleChange}
-              required
-              rows={4}
-              placeholder={t("contactForm.messagePlaceholder")}
-              className="text-black/75 placeholder:text-gray-400
-              w-full border-gray-500 shadow-xs px-4 py-2 border rounded-lg focus:ring-2 focus:ring-teal-400 outline-none resize-none"
             />
+            {errors.message && <p className="text-red-500 text-xs mt-1">{errors.message}</p>}
           </div>
 
-          <div className="mb-4">
-            <label className="flex items-center gap-2 text-sm font-semibold text-gray-500 mb-1">
-              <ImageIcon size={16} /> {t("contactForm.images")}
-            </label>
-            <p className="text-xs text-gray-500 mb-2">
-              {t("contactForm.imagesHint")}
-            </p>
-            <div
-              onClick={() => fileInputRef.current?.click()}
-              className="border-2 border-dashed border-gray-300 rounded-lg p-4 text-center cursor-pointer hover:border-teal-400"
-            >
-              <input
-                ref={fileInputRef}
-                type="file"
-                multiple
-                accept="image/*"
-                onChange={handleImageUpload}
-                className="hidden"
-              />
-              <Upload size={24} className="mx-auto text-gray-400 mb-1" />
-              <p className="text-sm text-gray-500">{t("uploadText")}</p>
-              <p className="text-xs text-gray-400 mt-1">
-                {t("contactForm.uploadHint")}
-              </p>
+          <div
+            onClick={() => fileInputRef.current?.click()}
+            className="border border-dashed border-teal-600 p-4 text-teal-600 rounded-lg text-center cursor-pointer mb-4 hover:bg-teal-50 transition"
+          >
+            <input
+              type="file"
+              multiple
+              accept="image/*"
+              ref={fileInputRef}
+              onChange={handleImageUpload}
+              className="hidden"
+            />
+            <Upload className="mx-auto" />
+            <span className="text-sm">{t("contactForm.uploadText")}</span>
+          </div>
+          {errors.images && <p className="text-red-500 text-xs mb-2">{errors.images}</p>}
+
+          {previews.length > 0 && (
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-2 mb-4">
+              {previews.map((p, i) => (
+                <div key={i} className="relative group">
+                  <img src={p} className="h-20 w-full object-cover rounded-lg" />
+                  <button
+                    type="button"
+                    onClick={() => removeImage(i)}
+                    className="absolute -top-2 -right-2 bg-red-500 text-white rounded-full p-1  transition"
+                  >
+                    <X size={14} />
+                  </button>
+                </div>
+              ))}
             </div>
+          )}
 
-            {previews.length > 0 && (
-              <div className="grid grid-cols-3 sm:grid-cols-5 gap-2 mt-3">
-                {previews.map((src, i) => (
-                  <div key={i} className="relative">
-                    <img
-                      src={src}
-                      className="w-full h-20 object-cover rounded-lg border"
-                    />
-                    <button
-                      type="button"
-                      onClick={() => removeImage(i)}
-                      className="absolute -top-2 -right-2 bg-red-500 text-white rounded-full p-0.5"
-                    >
-                      <X size={14} />
-                    </button>
-                  </div>
-                ))}
-              </div>
-            )}
-          </div>
-
-          {/* Submit Button */}
-          <button
+          <button 
             type="submit"
             disabled={status === "loading"}
-            className="w-full bg-teal-600 text-white py-3 rounded-lg font-semibold hover:bg-teal-700 transition disabled:opacity-50 flex items-center justify-center gap-2"
+            className="w-full bg-teal-600 text-white py-3 rounded-lg hover:bg-teal-700 transition disabled:opacity-50"
           >
             {status === "loading" ? (
-              <>
-                <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin" />
+              <span className="inline-flex items-center gap-2">
+                <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
                 {t("contactForm.sending")}
-              </>
+              </span>
             ) : (
               <>
-                <Send size={18} /> {t("contactForm.submit")}
+                <Send className="inline mr-2" /> {t("contactForm.submit")}
               </>
             )}
           </button>
 
+       
           {status === "success" && (
-            <div className="flex items-center gap-2 p-3 bg-green-50 text-green-700 rounded-lg mt-4 text-sm">
-              <CheckCircle size={18} /> {t("contactForm.success")}
-            </div>
-          )}
-          {status === "error" && (
-            <div className="flex items-center gap-2 p-3 bg-red-50 text-red-700 rounded-lg mt-4 text-sm">
-              <AlertCircle size={18} /> {errorMsg}
-            </div>
+            <p className="text-green-600 mt-2 text-center font-semibold">
+              ✓ {t("contactForm.success")}
+            </p>
           )}
         </motion.form>
       </div>

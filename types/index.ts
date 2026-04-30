@@ -6,12 +6,15 @@ export interface Message {
   message: string;
   isRead: boolean;
   createdAt: string;
-  houseNumber: string;
+
   phone: string;
-  location: string;
+ plaats:any
   images: [];
   space: number;
   updatedAt: string;
+  straat:string;
+  postcode:any;
+  nr:number;
 }
 
 export interface Stats {

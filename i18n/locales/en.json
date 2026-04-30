@@ -47,8 +47,54 @@
     "error": "Failed to send",
     "errorImages": "Please upload at least 2 images",
     "errorSpace": "Please enter a valid space in square meters",
-    "errorMaxImages": "You can upload up to 5 images maximum"
+    "errorMaxImages": "You can upload up to 5 images maximum" ,
+
+    "postcode": "Postcode",
+    "straat": "Street",
+    "nr": "Nr",
+    "toevoeging": "Addition",
+    "plaats": "City"
   },
+      "validation": {
+      "firstNameRequired": "First name is required",
+      "firstNameMin": "First name must be at least 2 characters",
+      "firstNameMax": "First name cannot exceed 50 characters",
+      
+      "lastNameRequired": "Last name is required",
+      "lastNameMin": "Last name must be at least 2 characters",
+      "lastNameMax": "Last name cannot exceed 50 characters",
+      
+      "emailRequired": "Email address is required",
+      "emailInvalid": "Please enter a valid email address (e.g., name@example.com)",
+      
+      "phoneRequired": "Phone number is required",
+      "phoneInvalid": "Please enter a valid phone number (8-20 digits, can include +, -, spaces)",
+      
+      "postcodeRequired": "Postcode is required",
+      "postcodeInvalid": "Please enter a valid postcode (e.g., 1234 AB or 12345)",
+      
+      "straatRequired": "Street name is required",
+      "straatMin": "Street name must be at least 2 characters",
+      
+      "nrRequired": "House number is required",
+      "nrInvalid": "Please enter a valid house number (e.g., 12, 12A, 12-14)",
+      
+      "plaatsRequired": "City is required",
+      "plaatsMin": "City name must be at least 2 characters",
+      
+      "spaceRequired": "Space is required",
+      "spaceInvalid": "Please enter a valid positive number",
+      "spaceMax": "Space cannot exceed 10,000 m²",
+      
+      "messageRequired": "Message is required",
+      "messageMin": "Message must be at least 10 characters",
+      "messageMax": "Message cannot exceed 1000 characters",
+      
+      "imagesMax": "Maximum 5 images allowed",
+      "imagesSize": "Each image must be less than 5MB",
+      "imagesType": "Only image files are allowed (JPG, PNG, GIF, WebP)",
+      "imagesInvalid": "Invalid files: {{files}}"
+    },
   "projectsSection": {
     "title": "Our",
     "titleHighlight": "Projects",

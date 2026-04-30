@@ -161,12 +161,22 @@ export default function MessageDetail() {
               icon={<MapPin size={18} />}
               items={[
                 {
-                  label: t("messageDetails.location"),
-                  value: message.location,
+                  label: t("contactForm.plaats"),
+                  value: message.plaats,
                 },
                 {
-                  label: t("messageDetails.houseNumber"),
-                  value: message.houseNumber,
+                  label: t("contactForm.nr"),
+                  value: message.nr,
+                  icon: <Hash size={12} />,
+                },
+                  {
+                  label: t("contactForm.postcode"),
+                  value: message.postcode,
+                  icon: <Hash size={12} />,
+                },
+                    {
+                  label: t("contactForm.straat"),
+                  value: message.straat,
                   icon: <Hash size={12} />,
                 },
                 {

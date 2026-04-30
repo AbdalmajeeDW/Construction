@@ -47,8 +47,53 @@
     "error": "Verzenden mislukt",
     "errorImages": "Upload minimaal 2 afbeeldingen",
     "errorSpace": "Voer een geldige ruimte in vierkante meters in",
-    "errorMaxImages": "U kunt maximaal 5 afbeeldingen uploaden"
+    "errorMaxImages": "U kunt maximaal 5 afbeeldingen uploaden",
+       "postcode": "Postcode",
+    "straat": "Straat",
+    "nr": "Nr",
+    "toevoeging": "Toevoeging",
+    "plaats": "Plaats"
   },
+      "validation": {
+      "firstNameRequired": "Voornaam is verplicht",
+      "firstNameMin": "Voornaam moet minimaal 2 tekens bevatten",
+      "firstNameMax": "Voornaam mag niet meer dan 50 tekens bevatten",
+      
+      "lastNameRequired": "Achternaam is verplicht",
+      "lastNameMin": "Achternaam moet minimaal 2 tekens bevatten",
+      "lastNameMax": "Achternaam mag niet meer dan 50 tekens bevatten",
+      
+      "emailRequired": "E-mailadres is verplicht",
+      "emailInvalid": "Voer een geldig e-mailadres in (bijv. naam@voorbeeld.nl)",
+      
+      "phoneRequired": "Telefoonnummer is verplicht",
+      "phoneInvalid": "Voer een geldig telefoonnummer in (8-20 cijfers, mag +, -, spaties bevatten)",
+      
+      "postcodeRequired": "Postcode is verplicht",
+      "postcodeInvalid": "Voer een geldige postcode in (bijv. 1234 AB of 12345)",
+      
+      "straatRequired": "Straatnaam is verplicht",
+      "straatMin": "Straatnaam moet minimaal 2 tekens bevatten",
+      
+      "nrRequired": "Huisnummer is verplicht",
+      "nrInvalid": "Voer een geldig huisnummer in (bijv. 12, 12A, 12-14)",
+      
+      "plaatsRequired": "Plaats is verplicht",
+      "plaatsMin": "Plaatsnaam moet minimaal 2 tekens bevatten",
+      
+      "spaceRequired": "Ruimte is verplicht",
+      "spaceInvalid": "Voer een geldig positief getal in",
+      "spaceMax": "Ruimte mag niet meer dan 10.000 m² zijn",
+      
+      "messageRequired": "Bericht is verplicht",
+      "messageMin": "Bericht moet minimaal 10 tekens bevatten",
+      "messageMax": "Bericht mag niet meer dan 1000 tekens bevatten",
+      
+      "imagesMax": "Maximaal 5 afbeeldingen toegestaan",
+      "imagesSize": "Elke afbeelding moet kleiner zijn dan 5MB",
+      "imagesType": "Alleen afbeeldingsbestanden zijn toegestaan (JPG, PNG, GIF, WebP)",
+      "imagesInvalid": "Ongeldige bestanden: {{files}}"
+    },
   "projectsSection": {
     "title": "Onze",
     "titleHighlight": "Projecten",

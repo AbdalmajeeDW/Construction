@@ -8,10 +8,10 @@ import { Message } from "@/types";
 import { useTranslation } from "react-i18next";
 import Pagination from "@/components/dashboard/Pagination";
 import ConfirmDialog from "@/components/dashboard/ConfirmDialog";
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import api from "@/api";
 import { API_ENDPOINTS } from "@/endPoint";
-import { useSearchParams } from "next/navigation";
+
 export default function AdminMessages() {
   const [messages, setMessages] = useState<Message[]>([]);
   const [loading, setLoading] = useState(true);
@@ -28,9 +28,9 @@ export default function AdminMessages() {
   useEffect(() => {
     fetchMessages();
   }, []);
+
   useEffect(() => {
     const f = searchParams.get("filter");
-
     if (f === "read" || f === "unread" || f === "all") {
       setFilter(f);
     }
@@ -41,7 +41,6 @@ export default function AdminMessages() {
     try {
       const response = await api.get(API_ENDPOINTS.CONTACT.GET_ALL);
       setMessages(Array.isArray(response.data) ? response.data : []);
-
     } finally {
       setLoading(false);
     }
@@ -49,14 +48,15 @@ export default function AdminMessages() {
 
   const deleteMessage = async (id: any) => {
     try {
-      api.delete(API_ENDPOINTS.CONTACT.GET_BY_ID(id)).then(() => {
-        setMessages(messages.filter((msg) => msg.id !== id));
-      });
+      await api.delete(API_ENDPOINTS.CONTACT.GET_BY_ID(id));
+      setMessages(messages.filter((msg) => msg.id !== id));
     } catch (error) {
       console.error(error);
     }
   };
+
   const handleDeleteClick = (id: string) => {
+    
     setMessageToDelete(id);
     setDialogOpen(true);
   };
@@ -67,6 +67,25 @@ export default function AdminMessages() {
       setMessageToDelete(null);
     }
   };
+
+  const handleFilterByAll = () => {
+    setFilter("all");
+    setCurrentPage(1);
+    router.push(`/messages?filter=all`);
+  };
+
+  const handleFilterByUnread = () => {
+    setFilter("unread");
+    setCurrentPage(1);
+    router.push(`/messages?filter=unread`);
+  };
+
+  const handleFilterByRead = () => {
+    setFilter("read");
+    setCurrentPage(1);
+    router.push(`/messages?filter=read`);
+  };
+
   const filteredMessages = messages
     .filter((msg) => {
       if (filter === "read") return msg.isRead;
@@ -75,21 +94,21 @@ export default function AdminMessages() {
     })
     .filter(
       (msg) =>
-        msg.firstName.toLowerCase().includes(search.toLowerCase()) ||
-        msg.email.toLowerCase().includes(search.toLowerCase()) ||
-        msg.message.toLowerCase().includes(search.toLowerCase()),
+        msg.firstName?.toLowerCase().includes(search.toLowerCase()) ||
+        msg.email?.toLowerCase().includes(search.toLowerCase()) ||
+        msg.message?.toLowerCase().includes(search.toLowerCase())
     )
     .sort(
       (a, b) =>
-        new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime(),
+        new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
     );
 
   const totalPages = Math.ceil(filteredMessages.length / itemsPerPage);
-
   const unreadCount = messages.filter((m) => !m.isRead).length;
+  const readCount = messages.filter((m) => m.isRead).length;
 
   return (
-    <div className="min-h-screen  bg-linear-to-br from-gray-50 via-white to-gray-50">
+    <div className="min-h-screen bg-linear-to-br from-gray-50 via-white to-gray-50">
       <Header
         title={t("messagePage.messages")}
         titleButton={t("messagePage.refresh")}
@@ -97,13 +116,22 @@ export default function AdminMessages() {
         click={fetchMessages}
       />
 
-      <div className="  mx-auto px-4 sm:px-6 md:px-8 py-4 sm:py-6 md:py-8">
-        <div className="grid grid-cols-1 container sm:grid-cols-2 w-full lg:grid-cols-3 gap-3 sm:gap-4 md:gap-6 mb-6 sm:mb-8">
+      <div className="mx-auto px-4 sm:px-6 md:px-8 py-4 sm:py-6 md:py-8">
+        {/* بطاقات الإحصائيات القابلة للنقر */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 md:gap-6 mb-6 sm:mb-8">
+          {/* بطاقة كل الرسائل */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
-            className="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 hover:shadow-md transition-shadow"
+            whileHover={{ scale: 1.02, y: -5 }}
+            whileTap={{ scale: 0.98 }}
+            onClick={handleFilterByAll}
+            className={`bg-white rounded-2xl shadow-sm border p-6 transition-all duration-300 cursor-pointer ${
+              filter === "all"
+                ? "border-teal-500 shadow-lg ring-2 ring-teal-500/20"
+                : "border-gray-100 hover:shadow-md hover:border-teal-200"
+            }`}
           >
             <div className="flex items-center justify-between">
               <div className="w-12 h-12 rounded-xl bg-linear-to-br from-teal-500 to-teal-600 flex items-center justify-center">
@@ -119,13 +147,21 @@ export default function AdminMessages() {
             <p className="text-gray-400 text-sm">
               {t("messagePage.allTimeSubmissions")}
             </p>
+          
           </motion.div>
 
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.15 }}
-            className="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 hover:shadow-md transition-shadow"
+            whileHover={{ scale: 1.02, y: -5 }}
+            whileTap={{ scale: 0.98 }}
+            onClick={handleFilterByUnread}
+            className={`bg-white rounded-2xl shadow-sm border p-6 transition-all duration-300 cursor-pointer ${
+              filter === "unread"
+                ? "border-amber-500 shadow-lg ring-2 ring-amber-500/20"
+                : "border-gray-100 hover:shadow-md hover:border-amber-200"
+            }`}
           >
             <div className="flex items-center justify-between">
               <div className="w-12 h-12 rounded-xl bg-linear-to-br from-amber-500 to-orange-600 flex items-center justify-center">
@@ -136,36 +172,42 @@ export default function AdminMessages() {
               </span>
             </div>
             <h3 className="text-gray-600 font-medium mt-4">
-              {" "}
               {t("messagePage.unreadMessages")}
             </h3>
             <p className="text-gray-400 text-sm">
               {t("messagePage.awaitingResponse")}
             </p>
+          
           </motion.div>
 
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
-            className="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 hover:shadow-md transition-shadow"
+            whileHover={{ scale: 1.02, y: -5 }}
+            whileTap={{ scale: 0.98 }}
+            onClick={handleFilterByRead}
+            className={`bg-white rounded-2xl shadow-sm border p-6 transition-all duration-300 cursor-pointer ${
+              filter === "read"
+                ? "border-emerald-500 shadow-lg ring-2 ring-emerald-500/20"
+                : "border-gray-100 hover:shadow-md hover:border-emerald-200"
+            }`}
           >
             <div className="flex items-center justify-between">
               <div className="w-12 h-12 rounded-xl bg-linear-to-br from-emerald-500 to-teal-600 flex items-center justify-center">
                 <CheckCircle className="w-6 h-6 text-white" />
               </div>
               <span className="text-3xl font-bold text-gray-800">
-                {messages.filter((m) => m.isRead).length}
+                {readCount}
               </span>
             </div>
             <h3 className="text-gray-600 font-medium mt-4">
-              {" "}
               {t("messagePage.readMessages")}
             </h3>
             <p className="text-gray-400 text-sm">
-              {" "}
               {t("messagePage.alreadyReviewed")}
             </p>
+         
           </motion.div>
         </div>
 
@@ -186,11 +228,7 @@ export default function AdminMessages() {
                   setSearch(e.target.value);
                   setCurrentPage(1);
                 }}
-                className="
-                 placeholder:text-gray-400
-                text-black/75 
-                
-                w-full pl-11 pr-4 py-2.5 border border-gray-500 rounded-xl focus:outline-none focus:border-teal-500 focus:ring-2 focus:ring-teal-500/20 transition-all"
+                className="placeholder:text-gray-400 text-black/75 w-full pl-11 pr-4 py-2.5 border border-gray-500 rounded-xl focus:outline-none focus:border-teal-500 focus:ring-2 focus:ring-teal-500/20 transition-all"
               />
             </div>
             <div className="flex gap-2 justify-center">
@@ -198,11 +236,13 @@ export default function AdminMessages() {
                 onClick={() => {
                   setFilter("all");
                   setCurrentPage(1);
+                  router.push("/messages?filter=all");
                 }}
-                className={`px-5 py-2.5  cursor-pointer rounded-xl font-medium transition-all duration-300 ${filter === "all"
-                  ? "bg-linear-to-r from-teal-600 to-teal-500 text-white shadow-md"
-                  : "bg-gray-100 text-gray-600 hover:bg-gray-200"
-                  }`}
+                className={`px-5 py-2.5 cursor-pointer rounded-xl font-medium transition-all duration-300 ${
+                  filter === "all"
+                    ? "bg-linear-to-r from-teal-600 to-teal-500 text-white shadow-md"
+                    : "bg-gray-100 text-gray-600 hover:bg-gray-200"
+                }`}
               >
                 {t("messagePage.all")}
               </button>
@@ -210,11 +250,13 @@ export default function AdminMessages() {
                 onClick={() => {
                   setFilter("unread");
                   setCurrentPage(1);
+                  router.push("/messages?filter=unread");
                 }}
-                className={`px-5 py-2.5 cursor-pointer rounded-xl font-medium transition-all duration-300 ${filter === "unread"
-                  ? "bg-linear-to-r  from-amber-600 to-orange-500 text-white shadow-md"
-                  : "bg-gray-100  text-gray-600 hover:bg-gray-200"
-                  }`}
+                className={`px-5 py-2.5 cursor-pointer rounded-xl font-medium transition-all duration-300 ${
+                  filter === "unread"
+                    ? "bg-linear-to-r from-amber-600 to-orange-500 text-white shadow-md"
+                    : "bg-gray-100 text-gray-600 hover:bg-gray-200"
+                }`}
               >
                 {t("messagePage.unread")}
               </button>
@@ -222,11 +264,13 @@ export default function AdminMessages() {
                 onClick={() => {
                   setFilter("read");
                   setCurrentPage(1);
+                  router.push("/messages?filter=read");
                 }}
-                className={`px-5 py-2.5 cursor-pointer rounded-xl font-medium transition-all duration-300 ${filter === "read"
-                  ? "bg-linear-to-r from-emerald-600 to-teal-500 text-white shadow-md"
-                  : "bg-gray-100 text-gray-600 hover:bg-gray-200"
-                  }`}
+                className={`px-5 py-2.5 cursor-pointer rounded-xl font-medium transition-all duration-300 ${
+                  filter === "read"
+                    ? "bg-linear-to-r from-emerald-600 to-teal-500 text-white shadow-md"
+                    : "bg-gray-100 text-gray-600 hover:bg-gray-200"
+                }`}
               >
                 {t("messagePage.read")}
               </button>

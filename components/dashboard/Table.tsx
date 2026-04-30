@@ -155,7 +155,8 @@ export default function Table({
                       </button>
 
                       <button
-                        onClick={() => deleteMessage(msg.id)}
+                        onClick={(e) =>{ e.stopPropagation() 
+                          deleteMessage(msg.id)}}
                         className="p-2 cursor-pointer text-red-600 hover:bg-red-50 rounded-lg transition-all duration-200"
                         title={t("messagePage.delete")}
                       >
