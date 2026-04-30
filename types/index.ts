@@ -37,3 +37,29 @@ export interface Activity {
   action: string;
   time: string;
 }
+export interface FormData {
+  firstName: string;
+  lastName: string;
+  email: string;
+  phone: string;
+  postcode: string;
+  nr: string;
+  straat: string;
+  plaats: string;
+  space: string;
+  message: string;
+}
+export interface FormErrors {
+  firstName?: string;
+  lastName?: string;
+  email?: string;
+  phone?: string;
+  postcode?: string;
+  nr?: string;
+  straat?: string;
+  plaats?: string;
+  space?: string;
+  message?: string;
+  images?: string;
+  errorName?:string
+}

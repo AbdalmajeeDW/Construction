@@ -92,7 +92,9 @@
       "imagesMax": "Maximaal 5 afbeeldingen toegestaan",
       "imagesSize": "Elke afbeelding moet kleiner zijn dan 5MB",
       "imagesType": "Alleen afbeeldingsbestanden zijn toegestaan (JPG, PNG, GIF, WebP)",
-      "imagesInvalid": "Ongeldige bestanden: {{files}}"
+      "imagesInvalid": "Ongeldige bestanden: {{files}}",
+          "imagesRequired": "Afbeelding is verplicht | Upload minimaal één afbeelding"
+
     },
   "projectsSection": {
     "title": "Onze",

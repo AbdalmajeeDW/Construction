@@ -18,6 +18,8 @@ import { useTranslation } from "react-i18next";
 import api from "@/api";
 import { API_ENDPOINTS } from "@/endPoint";
 import { validateFormContact } from "@/lib/validation";
+import { InputField } from "./InputField";
+import { FormErrors } from "@/types";
 
 interface FormData {
   firstName: string;
@@ -30,20 +32,6 @@ interface FormData {
   plaats: string;
   space: string;
   message: string;
-}
-
-interface FormErrors {
-  firstName?: string;
-  lastName?: string;
-  email?: string;
-  phone?: string;
-  postcode?: string;
-  nr?: string;
-  straat?: string;
-  plaats?: string;
-  space?: string;
-  message?: string;
-  images?: string;
 }
 
 export default function ContactForm() {
@@ -84,7 +72,7 @@ export default function ContactForm() {
     const { name, value } = e.target;
 
     setFormData((p) => ({ ...p, [name]: value }));
-    
+
     if (errors[name as keyof FormErrors]) {
       setErrors((prev) => ({ ...prev, [name]: undefined }));
     }
@@ -97,7 +85,7 @@ export default function ContactForm() {
 
     const validFiles: File[] = [];
     const invalidFiles: string[] = [];
-    
+
     for (const file of files) {
       if (!file.type.startsWith("image/")) {
         invalidFiles.push(`${file.name} (${t("validation.imagesType")})`);
@@ -105,10 +93,10 @@ export default function ContactForm() {
         validFiles.push(file);
       }
     }
-    
+
     if (invalidFiles.length > 0) {
-      setErrors((prev) => ({ 
-        ...prev, 
+      setErrors((prev) => ({
+        ...prev,
         images: t("validation.imagesInvalid", { files: invalidFiles.join(", ") })
       }));
       return;
@@ -119,7 +107,7 @@ export default function ContactForm() {
       ...p,
       ...validFiles.map((f) => URL.createObjectURL(f)),
     ]);
-    
+
     if (errors.images) {
       setErrors((prev) => ({ ...prev, images: undefined }));
     }
@@ -152,8 +140,8 @@ export default function ContactForm() {
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
 
-    const { isValid, errors } = validateFormContact(formData, t,images);
-    
+    const { isValid, errors } = validateFormContact(formData, t, images);
+
     if (!isValid) {
       setErrors(errors);
       setErrorMsg(t("validation.formErrors"));
@@ -209,7 +197,7 @@ export default function ContactForm() {
           </h2>
           <p className="text-gray-500 mt-2">{t("contactForm.description")}</p>
         </motion.div>
-        
+
         <motion.form
           onSubmit={handleSubmit}
           initial={{ opacity: 0, y: 30 }}
@@ -218,126 +206,48 @@ export default function ContactForm() {
           noValidate
         >
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mb-4">
+            <InputField label="firstName" icon={<User size={16} />} errors={errors} errorName={"firstName"} formData={formData} t={t} onChange={handleChange} />
             <div>
-              <label className={labelClass}><User size={16} /> {t("contactForm.firstName")} *</label>
-              <input 
-                name="firstName" 
-                value={formData.firstName}
-                className={errors.firstName ? inputErrorClass : inputClass} 
-                onChange={handleChange}
-              />
-              {errors.firstName && <p className="text-red-500 text-xs mt-1">{errors.firstName}</p>}
+              <InputField label="lastName" icon={<User size={16} />} errorName={"lastName"} errors={errors} formData={formData} t={t} onChange={handleChange} />
             </div>
-
             <div>
-              <label className={labelClass}><User size={16} /> {t("contactForm.lastName")} *</label>
-              <input 
-                name="lastName" 
-                value={formData.lastName}
-                className={errors.lastName ? inputErrorClass : inputClass} 
-                onChange={handleChange}
-              />
-              {errors.lastName && <p className="text-red-500 text-xs mt-1">{errors.lastName}</p>}
-            </div>
-
-            <div>
-              <label className={labelClass}><Mail size={16} /> {t("contactForm.email")} *</label>
-              <input 
-                name="email" 
-                type="email"
-                value={formData.email}
-                className={errors.email ? inputErrorClass : inputClass} 
-                onChange={handleChange}
-              />
-              {errors.email && <p className="text-red-500 text-xs mt-1">{errors.email}</p>}
+              <InputField label="email" icon={<Mail size={16} />} errorName={"email"} errors={errors} formData={formData} t={t} onChange={handleChange} />
             </div>
           </div>
-
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mb-4">
             <div>
-              <label className={labelClass}><Phone size={16} /> {t("contactForm.phone")} *</label>
-              <input 
-                name="phone" 
-                type="tel"
-                value={formData.phone}
-                className={errors.phone ? inputErrorClass : inputClass} 
-                onChange={handleChange}
-              />
-              {errors.phone && <p className="text-red-500 text-xs mt-1">{errors.phone}</p>}
+              <InputField label="phone" icon={<Phone size={16} />} errorName={"phone"} errors={errors} formData={formData} t={t} onChange={handleChange} />
             </div>
-
             <div>
-              <label className={labelClass}><MapPin size={16} /> {t("contactForm.postcode")} *</label>
-              <input 
-                name="postcode" 
-                value={formData.postcode}
-                className={errors.postcode ? inputErrorClass : inputClass} 
-                onChange={handleChange}
-              />
-              {errors.postcode && <p className="text-red-500 text-xs mt-1">{errors.postcode}</p>}
+              <InputField label="postcode" icon={<MapPin size={16} />} errorName={"postcode"} errors={errors} formData={formData} t={t} onChange={handleChange} />
             </div>
-
             <div>
-              <label className={labelClass}><MapPin size={16} /> {t("contactForm.plaats")} *</label>
-              <input 
-                name="plaats" 
-                value={formData.plaats}
-                className={errors.plaats ? inputErrorClass : inputClass} 
-                onChange={handleChange}
-              />
-              {errors.plaats && <p className="text-red-500 text-xs mt-1">{errors.plaats}</p>}
+              <InputField label="plaats" icon={<MapPin size={16} />} errorName={"plaats"} errors={errors} formData={formData} t={t} onChange={handleChange} />
             </div>
           </div>
-
           <div className="grid grid-cols-1 sm:grid-cols-12 gap-4 mb-4">
             <div className="sm:col-span-6">
-              <label className={labelClass}><MapPin size={16} /> {t("contactForm.straat")} *</label>
-              <input 
-                name="straat" 
-                value={formData.straat}
-                className={errors.straat ? inputErrorClass : inputClass} 
-                onChange={handleChange}
-              />
-              {errors.straat && <p className="text-red-500 text-xs mt-1">{errors.straat}</p>}
+              <InputField label="straat" icon={<MapPin size={16} />} errorName={"straat"} errors={errors} formData={formData} t={t} onChange={handleChange} />
             </div>
-
             <div className="sm:col-span-2">
-              <label className={labelClass}><Hash size={16} /> {t("contactForm.nr")} *</label>
-              <input 
-                name="nr" 
-                value={formData.nr}
-                className={`${errors.nr ? inputErrorClass : inputClass} text-left sm:text-center`}
-                onChange={handleChange}
-            
-              />
-              {errors.nr && <p className="text-red-500 text-xs mt-1">{errors.nr}</p>}
+              <InputField label="nr" icon={<Hash size={16} />} errorName={"nr"} errors={errors} formData={formData} t={t} onChange={handleChange} />
             </div>
-
             <div className="sm:col-span-4">
-              <label className={labelClass}><Ruler size={16} /> {t("contactForm.space")} *</label>
-              <input 
-                name="space" 
-                value={formData.space}
-                className={errors.space ? inputErrorClass : inputClass} 
-                onChange={handleChange}
-                placeholder="m²"
-              />
-              {errors.space && <p className="text-red-500 text-xs mt-1">{errors.space}</p>}
+              <InputField label="space" icon={<Ruler size={16} />} errorName={"space"} errors={errors} formData={formData} t={t} onChange={handleChange} />
             </div>
           </div>
 
           <div className="mb-4">
             <label className={labelClass}><MessageSquare size={16} /> {t("contactForm.message")} *</label>
-            <textarea 
-              name="message" 
-              rows={4} 
+            <textarea
+              name="message"
+              rows={4}
               value={formData.message}
-              className={errors.message ? inputErrorClass : inputClass} 
+              className={errors.message ? inputErrorClass : inputClass}
               onChange={handleChange}
             />
             {errors.message && <p className="text-red-500 text-xs mt-1">{errors.message}</p>}
           </div>
-
           <div
             onClick={() => fileInputRef.current?.click()}
             className="border border-dashed border-teal-600 p-4 text-teal-600 rounded-lg text-center cursor-pointer mb-4 hover:bg-teal-50 transition"
@@ -371,8 +281,7 @@ export default function ContactForm() {
               ))}
             </div>
           )}
-
-          <button 
+          <button
             type="submit"
             disabled={status === "loading"}
             className="w-full bg-teal-600 text-white py-3 rounded-lg hover:bg-teal-700 transition disabled:opacity-50"
@@ -388,8 +297,6 @@ export default function ContactForm() {
               </>
             )}
           </button>
-
-       
           {status === "success" && (
             <p className="text-green-600 mt-2 text-center font-semibold">
               ✓ {t("contactForm.success")}

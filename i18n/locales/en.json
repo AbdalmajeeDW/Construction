@@ -93,7 +93,9 @@
       "imagesMax": "Maximum 5 images allowed",
       "imagesSize": "Each image must be less than 5MB",
       "imagesType": "Only image files are allowed (JPG, PNG, GIF, WebP)",
-      "imagesInvalid": "Invalid files: {{files}}"
+      "imagesInvalid": "Invalid files: {{files}}",
+          "imagesRequired": "Image is required | At least one image must be uploaded"
+
     },
   "projectsSection": {
     "title": "Our",
