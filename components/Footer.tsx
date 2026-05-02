@@ -128,7 +128,7 @@ export default function Footer() {
                 </a>
               </li>
               
-              <li className="flex items-start justify-center sm:justify-start gap-3 group">
+              <li className="flex items-center justify-center sm:justify-start gap-3 group">
                 <div className="bg-teal-50 p-1.5 sm:p-2 rounded-lg group-hover:bg-teal-600 transition-colors duration-300 shrink-0 mt-0.5">
                   <MapPin className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-teal-600 group-hover:text-white transition-colors" />
                 </div>

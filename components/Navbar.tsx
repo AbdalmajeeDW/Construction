@@ -1,5 +1,5 @@
 "use client";
-
+import {  useRef } from "react";
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Menu, X } from "lucide-react";
@@ -14,7 +14,7 @@ export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const { t } = useTranslation();
   const pathname = usePathname();
-  
+  const menuRef = useRef<HTMLDivElement | null>(null);
   const isHome = pathname === "/";
 
   useEffect(() => {
@@ -32,7 +32,21 @@ export default function Navbar() {
     { name: t("links.about"), href: "/about" },
     { name: t("links.contact"), href: "/contact" },
   ];
+useEffect(() => {
+  const handleClickOutside = (event: MouseEvent) => {
+    if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
+      setIsOpen(false);
+    }
+  };
 
+  if (isOpen) {
+    document.addEventListener("mousedown", handleClickOutside);
+  }
+
+  return () => {
+    document.removeEventListener("mousedown", handleClickOutside);
+  };
+}, [isOpen]);
   const getNavbarStyle = () => {
     if (isScrolled) {
       return "bg-gray-400 backdrop-blur-md shadow-sm";
@@ -131,11 +145,12 @@ export default function Navbar() {
 
           {isOpen && (
             <motion.div
-              initial={{ opacity: 0, y: -20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              className="lg:hidden mt-4 py-3 bg-white/95 backdrop-blur-md rounded-2xl shadow-lg border border-gray-100"
-            >
+  ref={menuRef}
+  initial={{ opacity: 0, y: -20 }}
+  animate={{ opacity: 1, y: 0 }}
+  exit={{ opacity: 0, y: -20 }}
+  className="lg:hidden mt-4 py-3 bg-white/95 backdrop-blur-md rounded-2xl shadow-lg border border-gray-100"
+>
               {navLinks.map((link) => (
                 <a
                   key={link.name}

@@ -63,7 +63,9 @@ export default function Projects({ onView }: card) {
         "
         >
           {sliceCategoriesData.map((product, idx) => (
+            
             <Motion key={product.id} className="group h-full">
+              <div className="flex flex-col h-full cursor-pointer"  onClick={() => handleView(product.id!)}>
               <div className="bg-white rounded-xl sm:rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 h-full flex flex-col">
                 <div className="relative h-48 sm:h-52 md:h-56 lg:h-64 overflow-hidden bg-gray-100">
                   {product.image.slice(0, 1).map((e, i) => (
@@ -99,6 +101,7 @@ export default function Projects({ onView }: card) {
                     <ArrowRight className="w-3 h-3 sm:w-4 sm:h-4" />
                   </button>
                 </div>
+              </div>
               </div>
             </Motion>
           ))}
