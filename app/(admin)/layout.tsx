@@ -1,7 +1,14 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { LayoutDashboard, Mail, Menu, X, Building2, LogOut } from "lucide-react";
+import {
+  LayoutDashboard,
+  Mail,
+  ChevronRight,
+  X,
+  Building2,
+  LogOut,
+} from "lucide-react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import I18nProvider from "@/components/I18nProvider";
@@ -23,11 +30,11 @@ export default function AdminLayout({
   const handleLogout = async () => {
     try {
       localStorage.removeItem("isAdmin");
-      localStorage.removeItem("access_token"); 
-      sessionStorage.clear(); 
-      
+      localStorage.removeItem("access_token");
+      sessionStorage.clear();
+
       router.push("/login");
-      
+
       setOpen(false);
     } catch (error) {
       console.error("Logout error:", error);
@@ -36,12 +43,12 @@ export default function AdminLayout({
 
   useEffect(() => {
     if (isLoginPage) {
-      setIsAuthenticated(true);  
+      setIsAuthenticated(true);
       return;
     }
 
     const token = localStorage.getItem("isAdmin");
-    
+
     if (!token) {
       router.push("/login");
       setIsAuthenticated(false);
@@ -171,31 +178,18 @@ export default function AdminLayout({
           </div>
         </aside>
 
-        <main className="flex-1 h-full overflow-y-auto">
-       <button
-  onClick={() => setOpen(!open)}
-  className="lg:hidden fixed top-7  z-50 w-6 h-12 bg-white rounded-r-2xl shadow flex items-center justify-center hover:bg-gray-50 transition-colors"
->
-  {open ? (
-    <X className="w-3 h-3 text-gray-500" strokeWidth={1.5} />
-  ) : (
-    <svg 
-      xmlns="http://www.w3.org/2000/svg" 
-      width="12" 
-      height="12" 
-      viewBox="0 0 24 24" 
-      fill="none" 
-      stroke="currentColor" 
-      strokeWidth="2" 
-      strokeLinecap="round" 
-      strokeLinejoin="round"
-      className="text-gray-500"
-    >
-      <polyline points="9 18 15 12 9 6"/>
-    </svg>
-  )}
-</button>
-          
+        <main className="flex-1  h-full overflow-y-auto">
+          <button
+            onClick={() => setOpen(!open)}
+            className="lg:hidden fixed top-7  z-50 w-6 h-12 bg-white rounded-r-2xl shadow flex items-center justify-center hover:bg-gray-50 transition-colors"
+          >
+            {open ? (
+              <X className=" text-black " size={20} />
+            ) : (
+              <ChevronRight className=" text-black" size={25} />
+            )}
+          </button>
+
           {children}
         </main>
       </div>
