@@ -117,9 +117,7 @@ export default function AdminMessages() {
       />
 
       <div className="mx-auto px-4 sm:px-6 md:px-8 py-4 sm:py-6 md:py-8">
-        {/* بطاقات الإحصائيات القابلة للنقر */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 md:gap-6 mb-6 sm:mb-8">
-          {/* بطاقة كل الرسائل */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
