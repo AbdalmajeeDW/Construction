@@ -1,31 +1,22 @@
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import I18nProvider from "@/components/I18nProvider";
-export const metadata = {
-  title: "Rivo",
-  description:
-    "Professionele bouw- en renovatiediensten in Nederland. Kwaliteitswerk, betrouwbare uitvoering en scherpe prijzen. Vrijblijvende offerte!",
-  keywords: [
-    "aannemer Nederland",
-    "renovatie",
-    "bouwbedrijf",
-    "badkamer renovatie",
-    "keuken installatie",
-  ],
-
+import { Metadata } from "next";
+export const metadata: Metadata = {
+  metadataBase: new URL('https://rivoaannemerbedrijf.nl'),
+  title: "Rivo Diensten",
+  description: "Uw betrouwbare partner voor al uw bouwwerkzaamheden...",
   openGraph: {
     title: "Rivo Diensten",
-    description:
-      "Uw betrouwbare partner voor al uw bouwwerkzaamheden. Van volledige huisrenovaties tot badkamerrenovaties, keukeninstallaties, dakreparaties en schilderwerk. Wij leveren hoogwaardige resultaten op tijd en binnen budget.",
-
+    description: "Uw betrouwbare partner voor al uw bouwwerkzaamheden...",
     url: "https://rivoaannemerbedrijf.nl/",
     siteName: "Rivo",
     images: [
       {
-         url: "https://rivoaannemerbedrijf.nl/imageUrl.jpg",
+        url: 'https://rivoaannemerbedrijf.nl/imageUrl.jpg',
         width: 1200,
         height: 630,
-        alt: "Rivo",
+        alt: 'Rivo - Bouw en Renovatie',
       },
     ],
     type: "website",
