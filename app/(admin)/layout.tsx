@@ -181,7 +181,7 @@ export default function AdminLayout({
         <main className="flex-1  h-full overflow-y-auto">
           <button
             onClick={() => setOpen(!open)}
-            className="lg:hidden fixed top-7  z-50 w-6 h-12 bg-white rounded-r-2xl shadow flex items-center justify-center hover:bg-gray-50 transition-colors"
+            className="lg:hidden fixed top-7  z-50 w-6 h-24 bg-white rounded-r-2xl shadow flex items-center justify-center hover:bg-gray-50 transition-colors"
           >
             {open ? (
               <X className=" text-black " size={20} />
