@@ -22,7 +22,7 @@ export const metadata = {
     siteName: "Rivo",
     images: [
       {
-         url: "/heroHome.jpg",
+         url: "https://rivoaannemerbedrijf.nl/heroHome.jpg/imageUrl.jpg",
         width: 1200,
         height: 630,
         alt: "Rivo",
